@@ -1,27 +1,38 @@
-# Integrated-Project-ESCEL
-*KEYBOARD WARRIORS*
-This Integrated Project is done by Celest and Esther.
-One or two paragraphs providing an overview of your project. Tell us about your project.
+# **KEYBOARD WARRIORS**
+## **Design Process**
+Our project is catered for mainly people who are starting to use a computer, especially children around the ages of 6 to 12. This website application feature is to help them to practise typing so that in the future, they would be skilled at typing smoothly with little to no errors.
 
-Essentially, this part is your sales pitch.
+We came out with this idea with the thought that the generation is rapidly growing into the digital age and with more and more people required in the field of technology, there would be a need to lay down a good foundation on how to use a computer's keyboard. We noticed that in the past generation, when adults did not have a computer to practice typing, they are generally slower at typing with little efficiency. We want to help others learn how ot type faster with more accurancy simultaneously. With many employers looking out for candidates that can type fast and accurately, this skill would increase the chances of employment since typing fast can increase productivity. 
 
-Design Process
-Provide us insights about your design process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
-
+## **User Stories**
 In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
 
 As a user type, I want to perform an action, so that I can achieve a goal.
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory) Include the Adobe XD wireframe as a folder. You can include the XD share url.
 
-Features
+## **Features**
 In this section, you should go over the different parts of your project, and describe each in a sentence or so.
 
-Existing Features
+### **Existing Features**
+
+#### Navigation Bar:
+This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.A
+
+### Gamemode:
+This shows the available gamemode the player is allowed to play. There are two game modes, Player versus player (PVP) and Adventure. 
+
+### Player versus player (PVP) gamemode:
+This game mode allows players to go against other players in a typing tournament. This would help other players to rank up against other players in terms of leaderboards. 
+
+### Adventure gamemode:
+
+
+
 Feature 1 - allows users X to achieve Y, by having them fill out Z
 ...
 In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
-Features Left to Implement
+### **Features Left to Implement**
 Another feature idea
 Technologies Used
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
@@ -31,7 +42,8 @@ The project uses JQuery to simplify DOM manipulation.
 Testing
 For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
 
-Contact form:
+## Contact form:
+Developers: Esther Ho (estherhoeq03@gmail.com) & Celest Goh ()
 Go to the "Contact Us" page
 Try to submit the empty form and verify that an error message about the required fields appears
 Try to submit the form with an invalid email address and verify that a relevant error message appears

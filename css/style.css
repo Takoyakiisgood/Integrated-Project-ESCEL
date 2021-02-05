@@ -2,7 +2,7 @@
     align-items: center;
 }
 
-#login {
+#loginNav {
     align-items: right;
 }
 
@@ -36,4 +36,57 @@ h2 {
 
 .nav-item {
     padding: 0 5% 0 5%;
+}
+
+#login {
+    background-color: #96DCC5;
+    padding: 5% 8% 5% 8%;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#register {
+    background-color: #96DCC5;
+    padding: 5% 8% 5% 8%;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h2#help-h2 {
+    display: flex;
+    color: #605296;
+    margin-left: 15px;
+    font-weight: bold;
+    margin-bottom: 5px !important;
+}
+
+.help-instructions {
+    display: flex;
+    margin-left: 30px;
+    font: arial;
+
+}
+
+#cat-animation {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bear-animation {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

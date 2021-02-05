@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-const APIKEY = "2210eafd28a2885e3e4a0efb83604d0cc69ba"
+const APIKEY = "601134271346a1524ff12e92"
 $("#signup-success-msg").hide();
 $("#login-success-msg").hide();
 $("#login-error-msg").hide();
@@ -20,8 +20,8 @@ $("#register-btn").on("click", function (e) {
   };
 
 let settings = {
-  "async": true,
-  "crossDomain": true,
+  //"async": true, //[cher]
+  //"crossDomain": true, //[cher]
   "url": "https://esandcelgenerator-2966.restdb.io/rest/user-password",
   "method": "POST",
   "headers": {
@@ -29,7 +29,7 @@ let settings = {
     "x-apikey": APIKEY,
     "cache-control": "no-cache"
   },
-  "processData": false,
+  //"processData": false, //[cher]
   "data": JSON.stringify(jsondata),
   "beforeSend": function(){
     $("#register-btn").prop( "disabled", true);
