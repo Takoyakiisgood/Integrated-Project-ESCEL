@@ -20,8 +20,6 @@ $("#register-btn").on("click", function (e) {
   };
 
 let settings = {
-  //"async": true, //[cher]
-  //"crossDomain": true, //[cher]
   "url": "https://esandcelgenerator-2966.restdb.io/rest/user-password",
   "method": "POST",
   "headers": {
@@ -29,7 +27,6 @@ let settings = {
     "x-apikey": APIKEY,
     "cache-control": "no-cache"
   },
-  //"processData": false, //[cher]
   "data": JSON.stringify(jsondata),
   "beforeSend": function(){
     $("#register-btn").prop( "disabled", true);
@@ -47,6 +44,14 @@ $.ajax(settings).done(function (response) {
   console.log(response);
   $("#register-btn").prop( "disabled", false);
   $("#signup-success-msg").show().fadeOut(3000);
+
+  //assign new player info
+  let today = new Date();
+
+  let regdate = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
+  let level = 1;
+  let monsterdef = 0;
+  let petevolved = 0;
 });
 
 }); //end of register function
@@ -57,37 +62,38 @@ $("#login-btn").on("click", function (e) {
 
   let loginusername = $("#loginUsername").val();
   let loginpassword = $("#loginPassword").val();
+  //console.log(`user ${loginusername} pass ${loginpassword}`);
 
 let settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://esandcelgenerator-2966.restdb.io/rest/user-password",
+  "url": `https://esandcelgenerator-2966.restdb.io/rest/user-password?q={\"username\": \"${loginusername}\",\"password\":\"${loginpassword}\"}`,
   "method": "GET",
   "headers": {
     "content-type": "application/json",
     "x-apikey": APIKEY,
     "cache-control": "no-cache"
-  }
+  },
+  "beforeSend": function(){
+    $("#login-btn").prop( "disabled", true);
+    $("#bear-animation").show()
+    $("#login-page").hide()
+  },
+    "success": function() {
+    $("#login-form").trigger("reset");
+    $("#bear-animation").hide()
+    $("#login-page").show()
+}
 }
 
 $.ajax(settings).done(function (response) {
   //console.log(response);
-  for (var i = 0; i < response.length; i++) {
-    checkusername = $(response[i].username);
-    checkpassword = $(response[i].password);
-    if (loginusername == checkusername) {
-      console.log("hello");
-      if (loginpassword == checkpassword) {
-        console.log("hello1");
-      }else {
-        $("#register-form").trigger("reset");
-        $("#login-error-msg").show().fadeOut(3000);
-      }
-      }else {
-        $("#register-form").trigger("reset");
-        $("#login-error-msg").show().fadeOut(3000);
-      }
-    };
+  if (response.length > 0) {
+    $("#login-success-msg").show().fadeOut(3000);
+    localStorage.setItem('username', `${loginusername}`)
+  } else {
+    $("#login-error-msg").show().fadeOut(3000);
+  }
   });
 }); //end of login function
 
