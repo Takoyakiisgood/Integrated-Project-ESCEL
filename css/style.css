@@ -1,3 +1,10 @@
+/* home info */
+#home-info {
+    background-color: #C3BEEE;
+    border-radius: 25px;
+}
+
+/* end of home info */
 #play {
     align-items: center;
 }
@@ -13,12 +20,19 @@ h1 {
     padding-bottom: 4vh;
 }
 
+.gamemode-header {
+    text-decoration: none;
+    color: #717B98;
+
+}
+
 #pvp {
     padding: 6% 13% 6% 13%;
     background-color: #FFCBCB;
     border-radius: 10%;
     display: flex;
     flex-direction: column;
+
 }
 
 #adv {
@@ -31,7 +45,7 @@ h1 {
 
 h2 {
     text-align: center !important;
-    margin-bottom: 15% !important;
+    margin-bottom: 2% !important;
 }
 
 .nav-item {
@@ -56,6 +70,9 @@ h2 {
     flex-direction: column;
 }
 
+
+
+/*help page */
 h2#help-h2 {
     display: flex;
     color: #605296;
@@ -64,12 +81,40 @@ h2#help-h2 {
     margin-bottom: 5px !important;
 }
 
-.help-instructions {
-    display: flex;
+li {
     margin-left: 30px;
     font: arial;
+    color: #2D3D6A;
+}
+
+div.help-purpose {
+    display: flex;
+    margin-left: 40px;
+    font: arial;
+    padding: 6px;
 
 }
+
+  
+  .monsters-defeated {
+    flex-grow: 1;
+    height: 100px;
+  }
+
+  .pets-evolved {
+    flex-grow: 1;
+    height: 100px;
+  }
+  
+  .monsters-defeated + .pets-evolved {
+    margin-left: 2%;
+  }
+
+  .monsters-defeated {
+    flex-grow: 1;
+    height: 100px;
+  }
+  /* end of flex box for help page */
 
 #cat-animation {
     position: fixed;
@@ -83,6 +128,76 @@ h2#help-h2 {
 
 #bear-animation {
     position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pfp {
+    width: 10vw;
+    border-radius: 100%;
+}
+
+#username {
+    padding-left: 50%;
+    font-size: 50px;
+}
+
+#dateinfo {
+    padding-left: 50%;
+    font-size: 15px;
+}
+
+.infoheader {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+p.stats {
+    margin-right: 70px;
+
+    }
+
+
+.stats {
+    font-size: 15px;
+}
+
+
+#sentgenerated {
+    color: #707070;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 3vh 1vw 2vh 1vw;
+}
+
+#sentgencont {
+    background-color: #FAE7C6;
+    margin-bottom: 5vh;
+}
+
+#startscreen {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#congratulations {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#losing {
     height: 100vh;
     width: 100vw;
     background-color: lightblue;
