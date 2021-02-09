@@ -6,6 +6,9 @@ $("#login-success-msg").hide();
 $("#login-error-msg").hide();
 $("#cat-animation").hide()
 $("#bear-animation").hide()
+$("#gamepage").hide()
+$("#losing").hide()
+$("#congratulations").hide()
 
 //start of assign player info to new players
 function newInfo() {
@@ -155,9 +158,16 @@ $.ajax(settings).done(function (response) {
 }); //end of login function
 
 //start of typing game
-$("#register-btn").on("click", function (e) {
+window.addEventListener('keydown', (e) => {
+if (e.key === 'Enter') {
   e.preventDefault();
-  function typing() {
+  genSentences();
+}
+});
+//end of typing game
+
+//generate sentence
+function genSentences() {
   let settings = {
     "async": true,
     "crossDomain": true,
@@ -167,17 +177,44 @@ $("#register-btn").on("click", function (e) {
       "content-type": "application/json",
       "x-apikey": APIKEY,
       "cache-control": "no-cache"
-    }
+    },
+    "beforeSend": function(){
+      $("#startscreen").hide()
+      $("#cat-animation").show()
+    },
+      "success": function() {
+      $("#cat-animation").hide()
+      $("#gamepage").show()
+  }
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response);
-    randnumber = Math.floor(Math.random() * ((response.length)-1)) + 0;
-    console.log(randnumber)
-    });
-  
-} 
-}); //end of typing game
+    //console.log(response);
+    let randnumber = Math.floor(Math.random() * ((response.length)-1)) + 0;
+    let sentence = response[randnumber].sentences
+    
+    let sentarray = sentence.split('');
+    console.log(sentarray);
+    let sentdisplay = sentarray.join('');
+    health = 100;
 
-}); 
+    $("#sentgenerated").html(`${sentdisplay}`);
+
+    window.addEventListener('keyup', (e) => {
+    for (var i = 0; i < sentarray.length; i++) {
+        if (e.key === sentarray[i]) {
+          sentarray.shift();
+          let sentdisplay = sentarray.join('');
+          $("#sentgenerated").html(`${sentdisplay}`);
+          console.log(e.key);
+        } else {
+          health = health - 1;
+          console.log(health);
+        };
+    };
+
+    });
+  });
+};
+});
 
