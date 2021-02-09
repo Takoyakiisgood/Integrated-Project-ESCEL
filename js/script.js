@@ -7,6 +7,66 @@ $("#login-error-msg").hide();
 $("#cat-animation").hide()
 $("#bear-animation").hide()
 
+//start of assign player info to new players
+function newInfo() {
+
+  //assign new player info
+  let today = new Date();
+
+  let regdate = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
+  let level = 1;
+  let monsterdef = 0;
+  let petevolved = 0;
+  let username = localStorage.getItem("username");
+  let pfp = ""
+
+  let jsondata = {
+    "username": username,
+    "fully-evolved-pets": petevolved,
+    "defeated-monsters": monsterdef,
+    "level": level,
+    "profile-picture": pfp,
+    "regdate": regdate
+  };
+
+  let settings = {
+    "url": "https://esandcelgenerator-2966.restdb.io/rest/user-info",
+    "method": "POST",
+    "headers": {
+      "content-type": "application/json",
+      "x-apikey": APIKEY,
+      "cache-control": "no-cache"
+    },
+    "data": JSON.stringify(jsondata)
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+} //end of assign player info to new players
+
+//start of update player info
+function updateInfo() {
+  let username = localStorage.getItem("username");
+  let updateurl = `https://esandcelgenerator-2966.restdb.io/rest/user-info?q={\"username\": \"${username}\"}`;
+  
+  let settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": updateurl,
+    "method": "GET",
+    "headers": {
+      "content-type": "application/json",
+      "x-apikey": APIKEY,
+      "cache-control": "no-cache"
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    });
+} //end of update player info
+
 //start of register function
 $("#register-btn").on("click", function (e) {
   e.preventDefault();
@@ -18,6 +78,8 @@ $("#register-btn").on("click", function (e) {
     "username": registerusername,
     "password": registerpassword,
   };
+
+  localStorage.setItem("username", `${registerusername}`);
 
 let settings = {
   "url": "https://esandcelgenerator-2966.restdb.io/rest/user-password",
@@ -45,13 +107,7 @@ $.ajax(settings).done(function (response) {
   $("#register-btn").prop( "disabled", false);
   $("#signup-success-msg").show().fadeOut(3000);
 
-  //assign new player info
-  let today = new Date();
-
-  let regdate = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
-  let level = 1;
-  let monsterdef = 0;
-  let petevolved = 0;
+  newInfo();
 });
 
 }); //end of register function
@@ -91,11 +147,37 @@ $.ajax(settings).done(function (response) {
   if (response.length > 0) {
     $("#login-success-msg").show().fadeOut(3000);
     localStorage.setItem('username', `${loginusername}`)
+    updateInfo()
   } else {
     $("#login-error-msg").show().fadeOut(3000);
   }
   });
 }); //end of login function
+
+//start of typing game
+$("#register-btn").on("click", function (e) {
+  e.preventDefault();
+  function typing() {
+  let settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://esandcelgenerator-2966.restdb.io/rest/sentences-easy",
+    "method": "GET",
+    "headers": {
+      "content-type": "application/json",
+      "x-apikey": APIKEY,
+      "cache-control": "no-cache"
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    randnumber = Math.floor(Math.random() * ((response.length)-1)) + 0;
+    console.log(randnumber)
+    });
+  
+} 
+}); //end of typing game
 
 }); 
 
