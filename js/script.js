@@ -157,13 +157,17 @@ $.ajax(settings).done(function (response) {
   });
 }); //end of login function
 
+var inGame = false;
 //start of typing game
+if (inGame == false) {
 window.addEventListener('keydown', (e) => {
 if (e.key === 'Enter') {
   e.preventDefault();
   genSentences();
+  let inGame = true;
 }
 });
+}
 //end of typing game
 
 //generate sentence
@@ -193,28 +197,48 @@ function genSentences() {
     let randnumber = Math.floor(Math.random() * ((response.length)-1)) + 0;
     let sentence = response[randnumber].sentences
     
-    let sentarray = sentence.split('');
+    sentarray = sentence.split('');
     console.log(sentarray);
     let sentdisplay = sentarray.join('');
-    health = 100;
 
     $("#sentgenerated").html(`${sentdisplay}`);
-
-    window.addEventListener('keyup', (e) => {
-    for (var i = 0; i < sentarray.length; i++) {
-        if (e.key === sentarray[i]) {
-          sentarray.shift();
-          let sentdisplay = sentarray.join('');
-          $("#sentgenerated").html(`${sentdisplay}`);
-          console.log(e.key);
-        } else {
-          health = health - 1;
-          console.log(health);
-        };
-    };
-
-    });
   });
-};
-});
+}
+
+var health = 100;
+var rounds = 1
+var currentIndex = 0;
+  window.addEventListener("keyup", (e) => {
+    if (sentarray.length > 0) {
+      console.log("sent size ", sentarray.length);
+      console.log("current index ", currentIndex);
+       if (e.key.toLowerCase() === sentarray[currentIndex].toLowerCase()) {
+        sentarray.shift();//reduces the array one by one when user types
+        let sentdisplay = sentarray.join("");
+        $("#sentgenerated").html(`${sentdisplay}`);
+        console.log(`Key ${e.key} Key Code ${e.code}`); //debugging 
+        if (rounds < 4) {
+          if (sentarray.length == 0) {
+          rounds = rounds + 1;
+          $("#round").html(`${rounds}`);
+          $("#startscreen").show();
+          let inGame = false;
+        }
+      } else {
+        $("#startscreen").hide();
+        $("#gamepage").hide()
+        $("#congratulations").show()
+        window.addEventListener("click", (e) => {
+          document.location.href = "../index.html";
+        });
+      }
+      } else {
+        health--;
+        console.log(`Health: ${health}`);
+        console.log(rounds);
+      }
+    };
+        });
+  });
+
 
