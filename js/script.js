@@ -157,17 +157,19 @@ $.ajax(settings).done(function (response) {
   });
 }); //end of login function
 
-var inGame = false;
+var inGame = false; //if game ongoing keydown enter disabled
 //start of typing game
-if (inGame == false) {
+
 window.addEventListener('keydown', (e) => {
-if (e.key === 'Enter') {
-  e.preventDefault();
-  genSentences();
-  let inGame = true;
+    if (e.key === 'Enter') {
+      if (inGame == false) {
+        e.preventDefault();
+        genSentences();
+        let inGame = true;
+    }
 }
 });
-}
+
 //end of typing game
 
 //generate sentence
@@ -175,7 +177,7 @@ function genSentences() {
   let settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://esandcelgenerator-2966.restdb.io/rest/sentences-easy",
+    "url": "https://esandcelgenerator-2966.restdb.io/rest/test",
     "method": "GET",
     "headers": {
       "content-type": "application/json",
@@ -205,37 +207,47 @@ function genSentences() {
   });
 }
 
-var health = 100;
-var rounds = 1
+//var health = 100;
+var health = 3; //debugging
+var rounds = 1;
 var currentIndex = 0;
+
   window.addEventListener("keyup", (e) => {
     if (sentarray.length > 0) {
-      console.log("sent size ", sentarray.length);
-      console.log("current index ", currentIndex);
+      //console.log("sent size ", sentarray.length);
+      //console.log("current index ", currentIndex);
        if (e.key.toLowerCase() === sentarray[currentIndex].toLowerCase()) {
         sentarray.shift();//reduces the array one by one when user types
         let sentdisplay = sentarray.join("");
         $("#sentgenerated").html(`${sentdisplay}`);
         console.log(`Key ${e.key} Key Code ${e.code}`); //debugging 
-        if (rounds < 4) {
-          if (sentarray.length == 0) {
+        
+          if (sentarray.length == 0) { //when sentence is finished
           rounds = rounds + 1;
+          if (rounds == 4) {
+            $("#gamepage").hide();
+            $("#congratulations").show();
+            window.addEventListener("click", (e) => {
+            document.location.href = "../index.html";
+            });
+          } else {
           $("#round").html(`${rounds}`);
           $("#startscreen").show();
           let inGame = false;
+          }
         }
-      } else {
-        $("#startscreen").hide();
-        $("#gamepage").hide()
-        $("#congratulations").show()
-        window.addEventListener("click", (e) => {
-          document.location.href = "../index.html";
-        });
-      }
+      
       } else {
         health--;
         console.log(`Health: ${health}`);
         console.log(rounds);
+        if (health < 1) {
+          $("#gamepage").hide();
+          $("#losing").show();
+          window.addEventListener("click", (e) => {
+            document.location.href = "../index.html";
+            });
+        }
       }
     };
         });
