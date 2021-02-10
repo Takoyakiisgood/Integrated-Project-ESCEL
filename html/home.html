@@ -63,7 +63,7 @@
       </div>
     </nav>
 
-    <h1>
+    <h1 class="h1">
       <img
         src="../images/bear.png"
         style="max-height: 8vh; width: auto; padding: 0 1% 0 1%"
@@ -78,30 +78,37 @@
     </h1>
     
     <div id="home-info" class="container">
-      <div class="row">
-        <div class="col-4 col-sm-3">
-          <img id="pfp" src="../images/default pfp icon.png" />
-        </div>
+      <div class="row p-3">
+        <div class="col-4 col-sm-3 p-3 text-center">
+          <img id="pfp" src="../images/bear-pfp.png" />
+      </div>
       
-        <div class="col-3 bg-light p-3 border">.col-3: width of 25%</div></div>
+        <div class="col-3 p-3">
+          <p id="username" class="h1">Guest</p>
+          <p>Date joined: <span id="regdate">...</span></p>
+        </div>
+      </div>
         <div class="row justify-content-around">
           <div class="col-4">
-            One of two columns
+            
+          </div>
+        </div>
+        <div class="row p-3 text-center">
+          <div class="col-4">
+            <p class="h5">LEVEL</p>
+            <p id="levelinfo">...</p>
+          </div>
+          <div class="col-4">
+            <p class="h5">MONSTERS DEFEATED</p>
+            <p id="monstdefinfo">...</p>
+          </div>
+          <div class="col-4">
+            <p class="h5">PETS EVOLVED</p>
+            <p id="petevolveinfo">...</p>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-4">
-          .col-6<br />LEVEL
-        </div>
-        <div class="col-4">
-          .col-6<br />MONSTERS DEFEATED
-        </div>
-        <div class="col-4">
-          .col-6<br />Subsequent columns continue along the new line.
-        </div>
-      </div>
-    </div>
+    
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"

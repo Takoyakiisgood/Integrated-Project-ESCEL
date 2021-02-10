@@ -10,6 +10,11 @@ $("#gamepage").hide()
 $("#losing").hide()
 $("#congratulations").hide()
 
+if (localStorage.getItem("username")) {
+  dispInfo()
+  $("#loginNav a").addClass('disabled');
+}
+
 //start of assign player info to new players
 function newInfo() {
 
@@ -48,8 +53,26 @@ function newInfo() {
   });
 } //end of assign player info to new players
 
-//start of update player info
-function updateInfo() {
+//start of display player info
+function dispInfo() {
+  let username = localStorage.getItem("username");
+  let level = localStorage.getItem("level");
+  let monstdef = localStorage.getItem("monstdef");
+  let petevolve = localStorage.getItem("petevolve");
+  let pfp = localStorage.getItem("pfp");
+  let regdate = localStorage.getItem("regdate");
+
+  $("#username").html(`${username}`);
+  $("#levelinfo").html(`${level}`);
+  $("#monstdefinfo").html(`${monstdef}`);
+  $("#petevolveinfo").html(`${petevolve}`);
+  $("#pfp").attr("src", `${pfp}`);
+  $("#regdate").html(`${regdate}`);
+}
+//end of display player info
+
+//start of getting player info
+function getInfo() {
   let username = localStorage.getItem("username");
   let updateurl = `https://esandcelgenerator-2966.restdb.io/rest/user-info?q={\"username\": \"${username}\"}`;
   
@@ -67,8 +90,15 @@ function updateInfo() {
   
   $.ajax(settings).done(function (response) {
     console.log(response);
+    localStorage.setItem('level', `${response[0].level}`)
+    localStorage.setItem('monstdef', `${response[0].defeatedmonsters}`)
+    localStorage.setItem('petevolve', `${response[0].fullyevolvedpets}`)
+    localStorage.setItem('pfp', `${response[0].profilepicture}`)
+    localStorage.setItem('regdate', `${response[0].regdate}`)
+
+    dispInfo()
     });
-} //end of update player info
+} //end of getting player info
 
 //start of register function
 $("#register-btn").on("click", function (e) {
@@ -150,7 +180,7 @@ $.ajax(settings).done(function (response) {
   if (response.length > 0) {
     $("#login-success-msg").show().fadeOut(3000);
     localStorage.setItem('username', `${loginusername}`)
-    updateInfo()
+    getInfo()
   } else {
     $("#login-error-msg").show().fadeOut(3000);
   }
