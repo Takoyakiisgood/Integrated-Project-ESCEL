@@ -10,9 +10,51 @@ $("#gamepage").hide()
 $("#losing").hide()
 $("#congratulations").hide()
 
+//start of leaderboard functions
+disLeaderboard();
+$('#table_id').DataTable({
+  order: [[ 2, 'desc' ]]
+});
+
+function disLeaderboard() {
+  let settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://esandcelgenerator-2966.restdb.io/rest/user-info",
+    "method": "GET",
+    "headers": {
+      "content-type": "application/json",
+      "x-apikey": APIKEY,
+      "cache-control": "no-cache"
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    //console.log(response);
+    let content = ""
+    for (i = 0; i < response.length; i++) {
+     content = `${content}<tr id='${response[i]._id}'><td>${response[i].username}</td>
+        <td>${response[i].level}</td>
+        <td>${response[i].defeatedmonsters}</td>
+        <td>${response[i].fullyevolvedpets}</td>
+        </tr>`;
+    }
+    $("#contact-list tbody").html(content);
+  });
+}
+//end of leaderboard functions
+
+
+if ($("#startscreen").attr("id") == "startscreen") {
+  var inGame = false; //if game ongoing keydown enter disabled
+} else {
+  var inGame = true;
+}
+
+//if logged in login nav would be disabled and home page info would be displayed
 if (localStorage.getItem("username")) {
-  dispInfo()
   $("#loginNav a").addClass('disabled');
+  dispInfo()
 }
 
 //start of assign player info to new players
@@ -23,18 +65,18 @@ function newInfo() {
 
   let regdate = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
   let level = 1;
-  let monsterdef = 0;
-  let petevolved = 0;
+  let monstdef = 0;
+  let petevolve = 0;
   let username = localStorage.getItem("username");
-  let pfp = ""
+  let pfp = "../images/cat-pfp.png"
 
   let jsondata = {
     "username": username,
-    "fully-evolved-pets": petevolved,
-    "defeated-monsters": monsterdef,
     "level": level,
-    "profile-picture": pfp,
-    "regdate": regdate
+    "regdate": regdate,
+    "fullyevolvedpets": petevolve,
+    "defeatedmonsters": monstdef,
+    "profilepicture": pfp
   };
 
   let settings = {
@@ -130,8 +172,8 @@ let settings = {
   },
     "success": function() {
     $("#register-form").trigger("reset");
-    $("#cat-animation").hide()
-    $("#login-page").show()
+    $("#cat-animation").hide();
+    $("#login-page").show();
 }
 }
 
@@ -139,8 +181,8 @@ $.ajax(settings).done(function (response) {
   console.log(response);
   $("#register-btn").prop( "disabled", false);
   $("#signup-success-msg").show().fadeOut(3000);
-
   newInfo();
+  getInfo();
 });
 
 }); //end of register function
@@ -165,13 +207,15 @@ let settings = {
   },
   "beforeSend": function(){
     $("#login-btn").prop( "disabled", true);
-    $("#bear-animation").show()
-    $("#login-page").hide()
+    $("#bear-animation").show();
+    $("#login-page").hide();
   },
     "success": function() {
     $("#login-form").trigger("reset");
-    $("#bear-animation").hide()
-    $("#login-page").show()
+    $("#bear-animation").hide();
+    $("#login-page").show();
+    localStorage.setItem('username', `${loginusername}`);
+    getInfo()
 }
 }
 
@@ -179,15 +223,13 @@ $.ajax(settings).done(function (response) {
   //console.log(response);
   if (response.length > 0) {
     $("#login-success-msg").show().fadeOut(3000);
-    localStorage.setItem('username', `${loginusername}`)
-    getInfo()
+    window.setTimeout(function () {location.href = "../html/home.html";}, 3000);
   } else {
     $("#login-error-msg").show().fadeOut(3000);
   }
   });
 }); //end of login function
 
-var inGame = false; //if game ongoing keydown enter disabled
 //start of typing game
 
 window.addEventListener('keydown', (e) => {
@@ -195,7 +237,7 @@ window.addEventListener('keydown', (e) => {
       if (inGame == false) {
         e.preventDefault();
         genSentences();
-        let inGame = true;
+        inGame = true;
     }
 }
 });
@@ -241,7 +283,7 @@ function genSentences() {
 var health = 3; //debugging
 var rounds = 1;
 var currentIndex = 0;
-
+if (inGame == false) { //if the player not on playing page won't have keyup activity
   window.addEventListener("keyup", (e) => {
     if (sentarray.length > 0) {
       //console.log("sent size ", sentarray.length);
@@ -263,7 +305,7 @@ var currentIndex = 0;
           } else {
           $("#round").html(`${rounds}`);
           $("#startscreen").show();
-          let inGame = false;
+          inGame = false;
           }
         }
       
@@ -281,6 +323,7 @@ var currentIndex = 0;
       }
     };
         });
+      }
   });
 
 
