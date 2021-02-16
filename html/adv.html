@@ -10,12 +10,12 @@
 
     <title>Keyboard Warrior</title>
 </head>
-<body style="background-color: #CAECF8;">
+<body>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #F2E0A4; padding-left: 1%;">
+    <nav id="navigation-bar" class="navbar fixed-top navbar-expand-lg navbar-light">
         <div class="container-fluid">
           <a href="../index.html">
-            <img src="../images/logo.png" style="max-height: 8vh; width: auto;" alt="The logo of Keyboard Warriors">
+            <img src="../images/logo.png" class="navigation-logo" alt="The logo of Keyboard Warriors">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,23 +43,23 @@
       </nav>
 
       <div id="startscreen">
-        <p style="font-size: 40px; font-weight: bold;">Round <span id="round">1</span></p>
-        <p style="font-size: 40px; font-weight: bold;">PRESS ENTER KEY TO START</p>
+        <p class="start-text-one">Round <span id="round">1</span></p>
+        <p class="start-text-two">PRESS ENTER KEY TO START</p>
       </div>
 
       <div id="cat-animation">
-        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_z9ed2jna.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop autoplay></lottie-player>
+        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_z9ed2jna.json"  class="adv-lottie" background="transparent"  speed="1" loop autoplay></lottie-player>
         </div>
 
         <div id="gamepage">
           <h1>
-        <img src="../images/bear.png" style="max-height: 8vh; width: auto; padding: 0 1% 0 1%;" alt="The logo of Keyboard Warriors">
+        <img src="../images/bear.png" class="player-icon" alt="The logo of Keyboard Warriors">
         KEYBOARD WARRIORS
-        <img src="../images/cat.png" style="max-height: 8vh; width: auto; padding: 0 1% 0 1%;" alt="The logo of Keyboard Warriors">
+        <img src="../images/cat.png" class="player-icon" alt="The logo of Keyboard Warriors">
         </h1>
 
-        <div style="display: flex; align-items: center; flex-direction: column;">
-        <img src="../images/bear.png" style="width: 15vw; margin: 5vh 0 10vh 0;">
+        <div id="adventure-logos">
+        <img src="../images/bear.png" class="adv-monster-image">
         <div class="container-fluid container-md rounded-pill" id="sentgencont">
           <p class="text-center" id="sentgenerated">...</p>
         </div>
@@ -67,13 +67,13 @@
     </div>
 
       <div id="congratulations">
-        <p style="font-size: 40px; font-weight: bold;">CONGRATULATIONS! YOU WON!</p>
-        <p style="font-size: 20px; font-weight: bold;">Click anywhere to go back to main page.</p>
+        <p class="win-text-one">CONGRATULATIONS! YOU WON!</p>
+        <p class="win-text-two">Click anywhere to go back to main page.</p>
       </div>
 
       <div id="losing">
-        <p style="font-size: 40px; font-weight: bold;">Oh no! You lost! Don't give up and keep trying!</p>
-        <p style="font-size: 20px; font-weight: bold;">Click anywhere to go back to main page.</p>
+        <p class="lose-text-one">Oh no! You lost! Don't give up and keep trying!</p>
+        <p class="lose-text-two">Click anywhere to go back to main page.</p>
       </div>
 
 
@@ -82,6 +82,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     
     <script src="../js/script.js"></script>
-
-</body>
-</html>

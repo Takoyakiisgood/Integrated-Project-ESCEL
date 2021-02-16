@@ -5,6 +5,66 @@
 }
 
 /* end of home info */
+
+/* adventure gamemode page start */
+.start-text-one {
+    font-size: 40px;
+    font-weight: bold;
+}
+.start-text-two {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.win-text-one {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.win-text-two {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.lose-text-one {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.lose-text-tw0 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.adv-monster-image {
+    width: 15vw;
+    margin: 5vh 0 10vh 0;
+}
+
+#adventure-logos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.adv-monster-image {
+    width: 15vw;
+    margin: 5vh 0 10vh 0;
+}
+
+.player-icon {
+    max-height: 8vh;
+    width: auto;
+    padding: 0 1% 0 1%;
+}
+
+.adv-lottie {
+    width: 500px;
+    height: 500px;
+}
+/* adventure gamemode page end */
+
+/* navigation bar start */
 #play {
     align-items: center;
 }
@@ -13,12 +73,33 @@
     align-items: right;
 }
 
+nav {
+    background-color: #F2E0A4;
+    padding-left: 1%;
+}
+.nav-item {
+    padding: 0 5% 0 5%;
+}
+
+.navigation-logo { 
+    max-height: 8vh;
+    width: auto;
+}
+
+/* navigation bar end */
+
+/* mains start */
 h1 {
     padding-top: 14vh !important;
     text-align: center;
     margin: 0 !important;
     padding-bottom: 4vh;
 }
+
+body {
+    background-color: #CAECF8;
+}
+/* mains end */
 
 .gamemode-header {
     text-decoration: none;
@@ -48,9 +129,6 @@ h2 {
     margin-bottom: 2% !important;
 }
 
-.nav-item {
-    padding: 0 5% 0 5%;
-}
 
 #login {
     background-color: #96DCC5;
@@ -96,25 +174,60 @@ div.help-purpose {
 }
 
   
-  .monsters-defeated {
+.monsters-defeated {
     flex-grow: 1;
     height: 100px;
-  }
+}
 
-  .pets-evolved {
+.pets-evolved {
     flex-grow: 1;
     height: 100px;
-  }
+}
   
-  .monsters-defeated + .pets-evolved {
+.monsters-defeated + .pets-evolved {
     margin-left: 2%;
-  }
+}
 
-  .monsters-defeated {
+.monsters-defeated {
     flex-grow: 1;
     height: 100px;
-  }
-  /* end of flex box for help page */
+}
+
+.help-logo {
+    max-height: 8vh;
+    width: auto;
+    padding: 0 1% 0 1%;
+}
+/*help page end */
+
+/* leaderboard start */
+#leaderboard-content {
+    padding: 6%;
+    background-color: #FFDAD3;
+    margin: 2vh 8vw 2vh 8vw;
+    border-radius: 4rem !important;
+}
+/* leaderboard end */
+
+/* login start */
+.login-logo {
+    max-height: 8vh;
+    width: auto;
+    padding: 0 1% 0 1%;
+}
+
+.login-text {
+    margin: 2vh 0 0 0;
+}
+/* login end */
+
+/* pvp start */
+.pvp-logo {
+    max-height: 8vh;
+    width:auto; 
+    padding: 0 1% 0 1%;
+}
+/* pvp end */
 
 #cat-animation {
     position: fixed;
@@ -142,7 +255,6 @@ div.help-purpose {
 }
 
 #username {
-    padding-left: 50%;
     font-size: 50px;
 }
 
@@ -186,6 +298,7 @@ p.stats {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 #congratulations {
@@ -195,6 +308,7 @@ p.stats {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 #losing {
@@ -204,4 +318,11 @@ p.stats {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+#gamepage {
+    background-color: lightblue;
+    height: 100vh;
+    width: 100vw;
 }
