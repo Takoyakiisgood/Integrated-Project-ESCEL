@@ -26,9 +26,17 @@ This shows the available gamemode the player is allowed to play. There are two g
 ### Player versus player (PVP) gamemode:
 This game mode allows players to go against other players in a typing tournament. This would help other players to rank up against other players in terms of leaderboards. 
 
+<img src="./images/pvp-block.png" class="readme-images">
+<img src="./images/pvp-play.png" class="readme-images">
+
 ### Adventure gamemode:
 This game mode allows players to defeat monsters that have a low chance of dropping pets that players could evolve and showcase in the leaderboard and their profile.
 
+<img src="./images/adventure-block.png" class="readme-images">
+<img src="./images/adv-play.png" class="readme-images">
+
+### Leaderboard:
+A leaderboard allows players to compare their scores with other players to see who is at a higher rank. 
 
 Feature 1 - allows users X to achieve Y, by having them fill out Z
 ...
