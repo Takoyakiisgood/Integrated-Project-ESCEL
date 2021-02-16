@@ -1,4 +1,6 @@
 # **KEYBOARD WARRIORS**
+Website: https://takoyakiisgood.github.io/Integrated-Project-ESCEL/
+Github: https://github.com/Takoyakiisgood/Integrated-Project-ESCEL
 ## **Design Process**
 Our project is catered for mainly people who are starting to use a computer, especially children around the ages of 6 to 12. This website application feature is to help them to practise typing so that in the future, they would be skilled at typing smoothly with little to no errors.
 
@@ -12,9 +14,11 @@ This section is also where you would share links to any wireframes, mockups, dia
 
 ## **Features**
 ### **Existing Features**
-
+These are all the features that are existing in our website application with images alongside it for visual representation of our features.
 #### Navigation Bar:
-This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.A
+This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.
+
+<img src="./images/nav-bar.png" class="readme-images">
 
 ### Gamemode:
 This shows the available gamemode the player is allowed to play. There are two game modes, Player versus player (PVP) and Adventure. 
@@ -31,6 +35,12 @@ Feature 1 - allows users X to achieve Y, by having them fill out Z
 In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
 ### **Features Left to Implement**
+There are a few features that we have considered to add inside our website application feature but did not have enough time to accomplish them. We have listed all the features that were left to implement.
+
+We plan to add in a feature that would require users to sign up with unique passwords and usernames so that it would be much more secure.
+We also plan on adding a feature that would allow users to upload their own profile picture instead of choosing from the default pictures that we allocated to them which are our game's mascots, robot pet cat and robot monster bear.
+We also plan to make the user information even more secure by allowing the users to verify themselves through their emails in order to confirm that they are 
+
 Another feature idea
 Technologies Used
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
