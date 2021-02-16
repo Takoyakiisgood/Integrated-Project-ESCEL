@@ -11,10 +11,16 @@ $("#losing").hide()
 $("#congratulations").hide()
 
 //start of leaderboard functions
+if ($(document.body).attr('id') == "leaderboard-docu") {
 disLeaderboard();
-$('#table_id').DataTable({
-  order: [[ 2, 'desc' ]]
+$('#table_id').dataTable({
+  "info": false,
+  "searching": false,
+  "paging": false,
+  "ordering": false,
+  "order": [[2, "desc"]]
 });
+}
 
 function disLeaderboard() {
   let settings = {
@@ -26,7 +32,15 @@ function disLeaderboard() {
       "content-type": "application/json",
       "x-apikey": APIKEY,
       "cache-control": "no-cache"
-    }
+    },
+    "beforeSend": function(){
+      $("#bear-animation").show();
+      $("#leaderboard-page").hide();
+    },
+      "success": function() {
+      $("#bear-animation").hide();
+      $("#leaderboard-page").show();
+  }
   }
   
   $.ajax(settings).done(function (response) {
@@ -39,7 +53,7 @@ function disLeaderboard() {
         <td>${response[i].fullyevolvedpets}</td>
         </tr>`;
     }
-    $("#contact-list tbody").html(content);
+    $("#table_id tbody").html(content);
   });
 }
 //end of leaderboard functions
