@@ -36,7 +36,7 @@ This game mode allows players to defeat monsters that have a low chance of dropp
 <img src="./images/adv-play.png" class="readme-images">
 
 ### Leaderboard:
-A leaderboard allows players to compare their scores with other players to see who is at a higher rank. 
+A leaderboard allows players to compare their scores with other players to see who is at a higher rank. The leaderboard will state their levels, the number of monsters they defeated and 
 
 Feature 1 - allows users X to achieve Y, by having them fill out Z
 ...
