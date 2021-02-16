@@ -134,7 +134,6 @@ function dispInfo() {
 
   //for exp bar
   perc  = (expgained / expmax).toFixed(2)
-  console.log(perc)
 
   $("#username").html(`${username}`);
   $("#levelinfo").html(`${level}`);
@@ -341,6 +340,24 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
           if (rounds == 4) {
             $("#gamepage").hide();
             $("#congratulations").show();
+
+            let expgained = Number(localStorage.getItem("expgained"));
+            let expmax = Number(localStorage.getItem("expmax"));
+            let level = Number(localStorage.getItem("level"));
+            let newexpgained = expgained + 5;
+            if (newexpgained == expmax) {
+              newexpgained = 0;
+              localStorage.setItem('expgained', `${newexpgained}`);
+              newexpmax = expmax + 5;
+              localStorage.setItem('expmax', `${newexpmax}`);
+              newlevel = level + 1;
+              localStorage.setItem('level', `${newlevel}`);
+              console.log(level,newexpgained,newexpmax);
+            } else {
+              localStorage.setItem('expgained', `${newexpgained}`);
+              console.log(newexpgained)
+            }
+
             window.addEventListener("click", (e) => {
             document.location.href = "../index.html";
             });
