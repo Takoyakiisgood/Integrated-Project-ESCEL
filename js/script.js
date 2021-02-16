@@ -13,12 +13,20 @@ $("#congratulations").hide()
 //start of leaderboard functions
 if ($(document.body).attr('id') == "leaderboard-docu") {
 disLeaderboard();
-$('#table_id').dataTable({
+/*$('#table_id').dataTable({
   "info": false,
   "searching": false,
   "paging": false,
   "ordering": false,
   "order": [[2, "desc"]]
+});*/
+var t = $('#table_id').DataTable({
+  "info": false,
+  "searching": false,
+  "paging": false,
+ // "ordering": false,
+  "order": [[2, "desc"]],
+  //stateSave: true,
 });
 }
 
@@ -40,20 +48,22 @@ function disLeaderboard() {
       "success": function() {
       $("#bear-animation").hide();
       $("#leaderboard-page").show();
+ 
   }
   }
   
   $.ajax(settings).done(function (response) {
     //console.log(response);
-    let content = ""
+    
     for (i = 0; i < response.length; i++) {
-     content = `${content}<tr id='${response[i]._id}'><td>${response[i].username}</td>
-        <td>${response[i].level}</td>
-        <td>${response[i].defeatedmonsters}</td>
-        <td>${response[i].fullyevolvedpets}</td>
-        </tr>`;
+    let content = []
+     content.push(response[i].username);
+     content.push(response[i].level);
+     content.push(response[i].defeatedmonsters);
+     content.push(response[i].fullyevolvedpets);
+     t.row.add(content).draw( false );
     }
-    $("#table_id tbody").html(content);
+    
   });
 }
 //end of leaderboard functions
@@ -83,6 +93,7 @@ function newInfo() {
   let petevolve = 0;
   let username = localStorage.getItem("username");
   let pfp = "../images/cat-pfp.png"
+  let exp = "0,15"
 
   let jsondata = {
     "username": username,
@@ -90,7 +101,8 @@ function newInfo() {
     "regdate": regdate,
     "fullyevolvedpets": petevolve,
     "defeatedmonsters": monstdef,
-    "profilepicture": pfp
+    "profilepicture": pfp,
+    "exp": exp
   };
 
   let settings = {
@@ -117,6 +129,12 @@ function dispInfo() {
   let petevolve = localStorage.getItem("petevolve");
   let pfp = localStorage.getItem("pfp");
   let regdate = localStorage.getItem("regdate");
+  let expgained = localStorage.getItem("expgained");
+  let expmax = localStorage.getItem("expmax");
+
+  //for exp bar
+  perc  = (expgained / expmax).toFixed(2)
+  console.log(perc)
 
   $("#username").html(`${username}`);
   $("#levelinfo").html(`${level}`);
@@ -124,6 +142,9 @@ function dispInfo() {
   $("#petevolveinfo").html(`${petevolve}`);
   $("#pfp").attr("src", `${pfp}`);
   $("#regdate").html(`${regdate}`);
+  $("#expgained").html(`${expgained}`);
+  $("#expmax").html(`${expmax}`);
+  $("#explevel").css("width", `${perc}`);
 }
 //end of display player info
 
@@ -151,6 +172,13 @@ function getInfo() {
     localStorage.setItem('petevolve', `${response[0].fullyevolvedpets}`)
     localStorage.setItem('pfp', `${response[0].profilepicture}`)
     localStorage.setItem('regdate', `${response[0].regdate}`)
+
+    let exp = response[0].exp
+    let exparray = exp.split(',')
+    let expgained = exparray[0]
+    let expmax = exparray[1]
+    localStorage.setItem('expgained', `${expgained}`)
+    localStorage.setItem('expmax', `${expmax}`)
 
     dispInfo()
     });
