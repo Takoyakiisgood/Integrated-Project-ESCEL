@@ -65,14 +65,6 @@
 /* adventure gamemode page end */
 
 /* navigation bar start */
-#play {
-    align-items: center;
-}
-
-#loginNav {
-    align-items: right;
-}
-
 nav {
     background-color: #F2E0A4;
     padding-left: 1%;
@@ -97,7 +89,7 @@ h1 {
 }
 
 body {
-    background-color: #CAECF8;
+    background-color: #CAECF8 !important;
 }
 /* mains end */
 
@@ -151,13 +143,14 @@ h2 {
 
 
 /*help page */
-h2#help-h2 {
+h2.h2 {
     display: flex;
     color: #605296;
     margin-left: 15px;
     font-weight: bold;
     margin-bottom: 5px !important;
 }
+
 
 li {
     margin-left: 30px;
@@ -198,6 +191,14 @@ div.help-purpose {
     width: auto;
     padding: 0 1% 0 1%;
 }
+
+.mascot-headers-monsters {
+    display: flex;
+    color: #605296;
+    margin-left: 15px;
+    font-weight: bold;
+    margin-bottom: 5px !important;
+}
 /*help page end */
 
 /* leaderboard start */
@@ -210,6 +211,12 @@ div.help-purpose {
 /* leaderboard end */
 
 /* login start */
+#login-page {
+    background-color: #CAECF8;
+    height: 100vh;
+    width: 100vw;
+}
+
 .login-logo {
     max-height: 8vh;
     width: auto;
@@ -219,6 +226,7 @@ div.help-purpose {
 .login-text {
     margin: 2vh 0 0 0;
 }
+
 /* login end */
 
 /* pvp start */
@@ -233,7 +241,7 @@ div.help-purpose {
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-color: lightblue;
+    background-color: #CAECF8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -243,7 +251,7 @@ div.help-purpose {
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-color: lightblue;
+    background-color: #CAECF8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -294,7 +302,7 @@ p.stats {
 #startscreen {
     height: 100vh;
     width: 100vw;
-    background-color: lightblue;
+    background-color: #CAECF8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -304,7 +312,7 @@ p.stats {
 #congratulations {
     height: 100vh;
     width: 100vw;
-    background-color: lightblue;
+    background-color: #CAECF8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -314,7 +322,7 @@ p.stats {
 #losing {
     height: 100vh;
     width: 100vw;
-    background-color: lightblue;
+    background-color: #CAECF8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -322,7 +330,65 @@ p.stats {
 }
 
 #gamepage {
-    background-color: lightblue;
+    background-color: #CAECF8;
     height: 100vh;
     width: 100vw;
+}
+
+#expbar {
+    background-color: #ddd;
+    margin-bottom: 1vh;
+}
+
+#explevel {
+    background-color: #4CAF50;
+}
+
+#expcont {
+    display: flex;
+    flex-direction: column;
+}
+
+#exptext {
+    margin-bottom: 3vh;
+}
+
+#logout-Btn {
+    background-color: #FFBF6B; 
+}
+
+#inventory-page {
+    margin-top: 5vh;
+}
+
+#inv-header {
+    margin: 0;
+    padding-bottom: 4vh;
+}
+
+#inventory {
+    background-color: #96DCC5;
+    border-radius: 25px;
+    justify-content: center;
+}
+
+.hover {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+#egg:hover img {
+    opacity: 0.3;
+}
+
+#egg:hover .hover {
+    opacity: 1;
+}
+
+/* readme start */
+
+.readme-big {
+    width: 40%;
 }

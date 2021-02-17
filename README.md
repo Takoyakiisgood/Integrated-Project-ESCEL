@@ -30,7 +30,8 @@ This would allow players to move around the website easily and efficiently witho
 #### Logging In & Signing Up:
 This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.
 
-<img src="./images/nav-bar.png" class="readme-small">
+<img src="./images/login-block.png" class="readme-small">
+<img src="./images/login-block.png" class="readme-small">
 
 ### Leaderboard:
 A leaderboard allows players to compare their scores with other players to see who is at a higher rank. The leaderboard will state their levels, the number of robot monsters they defeated and the number of robot pets they have evolved.
