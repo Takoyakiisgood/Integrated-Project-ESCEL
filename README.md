@@ -11,7 +11,7 @@ Our project is catered for mainly people who are starting to use a computer, esp
 
 We came out with this idea with the thought that the generation is rapidly growing into the digital age and with more and more people required in the field of technology, there would be a need to lay down a good foundation on how to use a computer's keyboard. We noticed that in the past generation, when adults did not have a computer to practice typing, they are generally slower at typing with little efficiency. We want to help others learn how ot type faster with more accurancy simultaneously. With many employers looking out for candidates that can type fast and accurately, this skill would increase the chances of employment since typing fast can increase productivity. 
 
-We created a fictional world where the world was taken over by robot monsters, who have also stoen the eggs of many robot pets. Players, as heros, would have to rescue these robot pets from the robot monsters 
+In the adventure mode, we created a fictional world where the world was taken over by robot monsters, who have also stoen the eggs of many robot pets. Players, as heros, would have to rescue these robot pets from the robot monsters. By winning and defeating these monsters,
 
 ## **User Stories**
 In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
@@ -25,37 +25,34 @@ These are all the features that are existing in our website application with ima
 #### Navigation Bar:
 This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.
 
-<img src="./images/nav-bar.png" class="readme-images">
+<img src="./images/nav-bar.png" class="readme-small">
 
-### Gamemode:
-This shows the available gamemode the player is allowed to play. There are two game modes, Player versus player (PVP) and Adventure. 
+#### Logging In & Signing Up:
+This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.
 
-### Player versus player (PVP) gamemode:
-This game mode allows players to go against other players in a typing tournament. This would help other players to rank up against other players in terms of leaderboards.
-
-<img src="./images/pvp-block.png" class="readme-images">
-<img src="./images/pvp-play.png" class="readme-images">
-
-### Adventure gamemode:
-This game mode allows players to defeat robots monsters that have a low chance of dropping pets that players could evolve and showcase in the leaderboard and their profile. 
-
-<img src="./images/adventure-block.png" class="readme-images">
-<img src="./images/adv-play.png" class="readme-images">
+<img src="./images/nav-bar.png" class="readme-small">
 
 ### Leaderboard:
 A leaderboard allows players to compare their scores with other players to see who is at a higher rank. The leaderboard will state their levels, the number of robot monsters they defeated and the number of robot pets they have evolved.
 
 <img src="./images/leaderboard.png" class="readme-images">
 
-### Player versus player (PVP) screen:
-This is the screen when a player selects to play the PVP mode. Here, the player will be challenging another player to see who can type the fastest with the least mistakes. The players would have their words per minute and the time counting down.
+### Gamemodes:
+This shows the available gamemode the player is allowed to play. There are two game modes, Player versus player (PVP) and Adventure. 
 
-<img src="./images/pvp-play.png" class="readme-images">
+### Player versus player (PVP) gamemode:
+This game mode allows players to go against other players in a typing tournament. This would help other players to rank up against other players in terms of leaderboards. This is the screen when a player selects to play the PVP mode. Here, the player will be challenging another player to see who can type the fastest with the least mistakes. The players would have their words per minute and the time counting down.
 
-### Adventure screen:
-This is the screen when a player selects to play the PVP mode. Here, the player will be challenging another player to see who can type the fastest with the least mistakes. The players would have their words per minute and the time counting down.
+<img src="./images/pvp-block.png" class="readme-big">
+<img src="./images/pvp-play.png" class="readme-big">
 
-<img src="./images/adv-play.png" class="readme-images">
+### Adventure gamemode:
+This game mode allows players to defeat robots monsters that have a low chance of dropping pets that players could evolve and showcase in the leaderboard and their profile. 
+
+<img src="./images/adventure-block.png" class="readme-big">
+<img src="./images/adv-play.png" class="readme-big">
+
+
 
 ## **Features Left to Implement**
 
@@ -83,20 +80,18 @@ For any scenarios that have not been automated, test the user stories manually a
 
 ## Contact form:
 Developers: Esther Ho (s10203310@connect.np.edu.sg) & Celest Goh (s10204547@connect.np.edu.sg)
-Go to the "Contact Us" page
-Try to submit the empty form and verify that an error message about the required fields appears
-Try to submit the form with an invalid email address and verify that a relevant error message appears
-Try to submit the form with all inputs valid and verify that a success message appears.
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
 
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
 
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+## Credits:
+### Content:
+In our design process, there was a statement heavily inspired by another typing test game that is currently on the Internet as of today, TypeRush. I was inspired by the statement in their main page," Nowadays many employers are requiring candidates to be able to type at least a minimum of 35 wpm just for the sake of productivity. There are a variety of reasons that employers are looking for peopel with above average keyboarding skills." 
 
-Credits
-Content
-The text for section Y was copied from the Wikipedia article Z
-Media
+
+
+### Media:
 The photos used in this site were obtained from ...
-Acknowledgements
-I received inspiration for this project from X
+
+### Acknowledgements: 
+TypeRush: https://www.typerush.com/
+10 Fast Fingers: https://10fastfingers.com/typing-test/english
+Live Chat: https://www.livechat.com/typing-speed-test/#/
