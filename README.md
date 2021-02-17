@@ -30,13 +30,13 @@ This would allow players to move around the website easily and efficiently witho
 #### Logging In & Signing Up:
 This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.
 
-<img src="./images/login-block.png" class="readme-small">
-<img src="./images/login-block.png" class="readme-small">
+<img src="./images/login-block.png">
+<img src="./images/login-block.png">
 
 ### Leaderboard:
 A leaderboard allows players to compare their scores with other players to see who is at a higher rank. The leaderboard will state their levels, the number of robot monsters they defeated and the number of robot pets they have evolved.
 
-<img src="./images/leaderboard.png" class="readme-images">
+<img src="./images/leaderboard.png" id="readme-big">
 
 ### Gamemodes:
 This shows the available gamemode the player is allowed to play. There are two game modes, Player versus player (PVP) and Adventure. 
@@ -44,14 +44,14 @@ This shows the available gamemode the player is allowed to play. There are two g
 ### Player versus player (PVP) gamemode:
 This game mode allows players to go against other players in a typing tournament. This would help other players to rank up against other players in terms of leaderboards. This is the screen when a player selects to play the PVP mode. Here, the player will be challenging another player to see who can type the fastest with the least mistakes. The players would have their words per minute and the time counting down.
 
-<img src="./images/pvp-block.png" class="readme-big">
-<img src="./images/pvp-play.png" class="readme-big">
+<img src="./images/pvp-block.png" id="readme-big">
+<img src="./images/pvp-play.png" id="readme-big">
 
 ### Adventure gamemode:
 This game mode allows players to defeat robots monsters that have a low chance of dropping pets that players could evolve and showcase in the leaderboard and their profile. 
 
-<img src="./images/adventure-block.png" class="readme-big">
-<img src="./images/adv-play.png" class="readme-big">
+<img src="./images/adventure-block.png" id="readme-big">
+<img src="./images/adv-play.png" id="readme-big">
 
 
 
