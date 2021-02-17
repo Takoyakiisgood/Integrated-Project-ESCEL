@@ -377,6 +377,9 @@ p.stats {
     width: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-color: #4CC59D;
+    border-radius: 10px;
 }
 
 .hover {
@@ -393,6 +396,8 @@ p.stats {
     -ms-transform: translate(-50%, -50%);
     height: 100%;
     width: 100%;
+    border-radius: 10px;
+    flex-direction: column;
 }
 
 #egg img {
@@ -404,16 +409,6 @@ p.stats {
     backface-visibility: hidden;
 }
 
-#egg:hover img {
-    opacity: 0.3;
-}
-
 #egg:hover .hover {
-    opacity: 1;
-}
-
-/* readme start */
-
-#readme-big {
-    width: 40%;
+    opacity: 0.8;
 }

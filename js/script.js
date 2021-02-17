@@ -10,6 +10,7 @@ $("#gamepage").hide()
 $("#losing").hide()
 $("#congratulations").hide()
 $("#logout-Btncont").hide()
+$("#inventory-page").hide()
 
 //start of leaderboard functions
 if ($(document.body).attr('id') == "leaderboard-docu") {
@@ -72,6 +73,7 @@ if (localStorage.getItem("username")) {
   $("#loginNav a").addClass('disabled');
   dispInfo();
   $("#logout-Btncont").show();
+  $("#inventory-page").show();
 }
 
 //start of log out function
@@ -189,6 +191,8 @@ function dispInfo() {
   let regdate = localStorage.getItem("regdate");
   let expgained = localStorage.getItem("expgained");
   let expmax = localStorage.getItem("expmax");
+  let eggcount = localStorage.getItem("eggs");
+  let pets = localStorage.getItem("pets");
 
   //for exp bar
   perc  = (expgained / expmax).toFixed(2)
@@ -202,6 +206,37 @@ function dispInfo() {
   $("#expgained").html(`${expgained}`);
   $("#expmax").html(`${expmax}`);
   $("#explevel").css("width", `${perc}`);
+  $("#eggcount").html(`${eggcount}`);
+
+  let pet3d = ""
+  if (pets != "") {
+    petsarray = pets.split(',');
+    for (i = 0; i < petsarray.length; i++) {
+      if (petsarray[i] == "cat") {
+        pet3d = `<div class="sketchfab-embed-wrapper col-3 text-center p-3 m-4">
+        <iframe title="Robot Cat Pet" width="250" height="200" src="https://sketchfab.com/models/aac4efcdde574648be6730554146eadb/embed">
+        </iframe>
+       <p style="font-size: 13px; font-weight: normal; margin: 5px; color: ;">
+            <a href="https://sketchfab.com/3d-models/robot-cat-pet-aac4efcdde574648be6730554146eadb" target="_blank" style="font-weight: bold; color: ;">Robot Cat Pet</a>
+            by <a href="https://sketchfab.com/astheho" target="_blank" style="font-weight: bold; color: #1CAAD9;">astheho</a>
+            on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+        </p>
+    </div>`
+      $("#inventory").append(`${pet3d}`);
+      } else if (petsarray[i] == "bear") {
+        pet3d = `<div class="sketchfab-embed-wrapper col-3 text-center p-3 m-4">
+        <iframe title="Bear Monster Sketchfab Export" width="250" height="200" src="https://sketchfab.com/models/a7b98d82fc26444ba0bf3aabf7f5d429/embed">
+        </iframe>
+       <p style="font-size: 13px; font-weight: normal; margin: 5px; color: ;">
+            <a href="https://sketchfab.com/3d-models/bear-monster-sketchfab-export-a7b98d82fc26444ba0bf3aabf7f5d429" target="_blank" style="font-weight: bold; color: ;">Bear Monster Sketchfab Export</a>
+            by <a href="https://sketchfab.com/Takoyakiisgoodd" target="_blank" style="font-weight: bold; color: #1CAAD9;">Takoyakiisgoodd</a>
+            on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+        </p>
+    </div>`
+    $("#inventory").append(`${pet3d}`);
+      }
+    }
+  } 
 }
 //end of display player info
 
@@ -245,15 +280,7 @@ function getInfo() {
     let expmax = exparray[1]
     localStorage.setItem('expgained', `${expgained}`)
     localStorage.setItem('expmax', `${expmax}`)
-
-    let pets = localStorage.setItem('pets', `${pets}`)
-    if (pets != "") {
-      let petsarray = (response[0].pets).split(',')
-      localStorage.setItem('pets', `${petsarray}`)
-    } else {
-      let petsarray = []
-      localStorage.setItem('pets', `${petsarray}`)
-    }
+    localStorage.setItem('pets', `${response[0].pets}`)
 
     dispInfo()
     });
@@ -431,9 +458,11 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
               localStorage.setItem('level', `${newlevel}`);
               localStorage.setItem('monstdef', `${newmonstdef}`);
               //console.log(newlevel,newexpgained,newexpmax); //debugging
+              updateInfo();
             } else {
               localStorage.setItem('expgained', `${newexpgained}`);
               localStorage.setItem('monstdef', `${newmonstdef}`);
+              updateInfo();
               //console.log(newexpgained) //debugging
             }
 
