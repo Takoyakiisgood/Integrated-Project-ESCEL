@@ -9,24 +9,16 @@ $("#bear-animation").hide()
 $("#gamepage").hide()
 $("#losing").hide()
 $("#congratulations").hide()
+$("#logout-Btncont").hide()
 
 //start of leaderboard functions
 if ($(document.body).attr('id') == "leaderboard-docu") {
-disLeaderboard();
-/*$('#table_id').dataTable({
+  disLeaderboard();
+  var t = $('#table_id').DataTable({
   "info": false,
   "searching": false,
   "paging": false,
-  "ordering": false,
   "order": [[2, "desc"]]
-});*/
-var t = $('#table_id').DataTable({
-  "info": false,
-  "searching": false,
-  "paging": false,
- // "ordering": false,
-  "order": [[2, "desc"]],
-  //stateSave: true,
 });
 }
 
@@ -78,7 +70,67 @@ if ($("#startscreen").attr("id") == "startscreen") {
 //if logged in login nav would be disabled and home page info would be displayed
 if (localStorage.getItem("username")) {
   $("#loginNav a").addClass('disabled');
-  dispInfo()
+  dispInfo();
+  $("#logout-Btncont").show();
+}
+
+//start of log out function
+$("#logout-Btn").on("click", function (e) {
+  e.preventDefault();
+  updateInfo();
+  localStorage.clear();
+  document.location.href = "../index.html";
+}); //end of log out function
+
+//start of update user info
+function updateInfo() {
+  let username = localStorage.getItem("username");
+  let dataid = localStorage.getItem("_id");
+  let updateurl = `https://esandcelgenerator-2966.restdb.io/rest/user-info/${dataid}`;
+
+  let level = localStorage.getItem("level");
+  let monstdef = localStorage.getItem("monstdef");
+  let petevolve = localStorage.getItem("petevolve");
+  let pfp = localStorage.getItem("pfp");
+  let regdate = localStorage.getItem("regdate");
+  
+  let eggs = localStorage.getItem("eggs");
+  let eggexp = localStorage.getItem("eggexp");
+  let eggexpmax = localStorage.getItem("eggexpmax");
+  let eggevolvestate = `${eggexp},${eggexpmax}`
+
+  let expgained = localStorage.getItem("expgained");
+  let expmax = localStorage.getItem("expmax");
+  let exp = `${expgained},${expmax}`
+
+  let pets = localStorage.getItem("pets");
+
+  let jsondata = {
+    "username": username,
+    "level": level,
+    "regdate": regdate,
+    "fullyevolvedpets": petevolve,
+    "defeatedmonsters": monstdef,
+    "profilepicture": pfp,
+    "exp": exp,
+    "pets": pets,
+    "eggs": eggs,
+    "eggevolvestate": eggevolvestate
+  };
+
+  let settings = {
+    "url": updateurl,
+    "method": "PUT",
+    "headers": {
+      "content-type": "application/json",
+      "x-apikey": APIKEY,
+      "cache-control": "no-cache"
+    },
+    "data": JSON.stringify(jsondata)
+  }
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
 }
 
 //start of assign player info to new players
@@ -92,8 +144,11 @@ function newInfo() {
   let monstdef = 0;
   let petevolve = 0;
   let username = localStorage.getItem("username");
-  let pfp = "../images/cat-pfp.png"
-  let exp = "0,15"
+  let pfp = "../images/cat-pfp.png";
+  let exp = "0,15";
+  let pets = "";
+  let eggs = 0;
+  let eggevolvestate = "0,25"
 
   let jsondata = {
     "username": username,
@@ -102,7 +157,10 @@ function newInfo() {
     "fullyevolvedpets": petevolve,
     "defeatedmonsters": monstdef,
     "profilepicture": pfp,
-    "exp": exp
+    "exp": exp,
+    "pets": pets,
+    "eggs": eggs,
+    "eggevolvestate": eggevolvestate
   };
 
   let settings = {
@@ -166,11 +224,20 @@ function getInfo() {
   
   $.ajax(settings).done(function (response) {
     console.log(response);
+    localStorage.setItem('_id', `${response[0]._id}`)
     localStorage.setItem('level', `${response[0].level}`)
     localStorage.setItem('monstdef', `${response[0].defeatedmonsters}`)
     localStorage.setItem('petevolve', `${response[0].fullyevolvedpets}`)
     localStorage.setItem('pfp', `${response[0].profilepicture}`)
     localStorage.setItem('regdate', `${response[0].regdate}`)
+    localStorage.setItem('eggs', `${response[0].eggs}`)
+
+    let eggevolve = response[0].eggevolvestate
+    let eggarray = eggevolve.split(',')
+    let eggexp = eggarray[0]
+    let eggexpmax = eggarray[1]
+    localStorage.setItem('eggexp', `${eggexp}`)
+    localStorage.setItem('eggexpmax', `${eggexpmax}`)
 
     let exp = response[0].exp
     let exparray = exp.split(',')
@@ -178,6 +245,15 @@ function getInfo() {
     let expmax = exparray[1]
     localStorage.setItem('expgained', `${expgained}`)
     localStorage.setItem('expmax', `${expmax}`)
+
+    let pets = localStorage.setItem('pets', `${pets}`)
+    if (pets != "") {
+      let petsarray = (response[0].pets).split(',')
+      localStorage.setItem('pets', `${petsarray}`)
+    } else {
+      let petsarray = []
+      localStorage.setItem('pets', `${petsarray}`)
+    }
 
     dispInfo()
     });
@@ -264,7 +340,7 @@ $.ajax(settings).done(function (response) {
   //console.log(response);
   if (response.length > 0) {
     $("#login-success-msg").show().fadeOut(3000);
-    window.setTimeout(function () {location.href = "../html/home.html";}, 3000);
+    window.setTimeout(function () {location.href = "../html/home.html"}, 3000);
   } else {
     $("#login-error-msg").show().fadeOut(3000);
   }
@@ -313,7 +389,6 @@ function genSentences() {
     let sentence = response[randnumber].sentences
     
     sentarray = sentence.split('');
-    console.log(sentarray);
     let sentdisplay = sentarray.join('');
 
     $("#sentgenerated").html(`${sentdisplay}`);
@@ -333,7 +408,7 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
         sentarray.shift();//reduces the array one by one when user types
         let sentdisplay = sentarray.join("");
         $("#sentgenerated").html(`${sentdisplay}`);
-        console.log(`Key ${e.key} Key Code ${e.code}`); //debugging 
+        //console.log(`Key ${e.key} Key Code ${e.code}`); //debugging 
         
           if (sentarray.length == 0) { //when sentence is finished
           rounds = rounds + 1;
@@ -344,7 +419,9 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
             let expgained = Number(localStorage.getItem("expgained"));
             let expmax = Number(localStorage.getItem("expmax"));
             let level = Number(localStorage.getItem("level"));
+            let monstdef = Number(localStorage.getItem("monstdef"));
             let newexpgained = expgained + 5;
+            let newmonstdef = monstdef + 1;
             if (newexpgained == expmax) {
               newexpgained = 0;
               localStorage.setItem('expgained', `${newexpgained}`);
@@ -352,10 +429,12 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
               localStorage.setItem('expmax', `${newexpmax}`);
               newlevel = level + 1;
               localStorage.setItem('level', `${newlevel}`);
-              console.log(level,newexpgained,newexpmax);
+              localStorage.setItem('monstdef', `${newmonstdef}`);
+              //console.log(newlevel,newexpgained,newexpmax); //debugging
             } else {
               localStorage.setItem('expgained', `${newexpgained}`);
-              console.log(newexpgained)
+              localStorage.setItem('monstdef', `${newmonstdef}`);
+              //console.log(newexpgained) //debugging
             }
 
             window.addEventListener("click", (e) => {
@@ -370,8 +449,8 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
       
       } else {
         health--;
-        console.log(`Health: ${health}`);
-        console.log(rounds);
+        //console.log(`Health: ${health}`); //debugging
+        //console.log(rounds); //debugging
         if (health < 1) {
           $("#gamepage").hide();
           $("#losing").show();
