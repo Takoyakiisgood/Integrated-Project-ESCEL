@@ -25,7 +25,7 @@ These are all the features that are existing in our website application with ima
 #### Navigation Bar:
 This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.
 
-<img src="./images/nav-bar.png" class="readme-small">
+<img src="./images/nav-bar.png">
 
 #### Logging In & Signing Up:
 This would allow players to move around the website easily and efficiently without being confused. This feature will lead players to the home page, the leaderboards page, the help page, the play page and the log in page.
@@ -74,7 +74,7 @@ We used English as the main language of our website application because English 
 Technologies Used
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
 
-JQuery
+## JQuery:
 The project uses JQuery to simplify DOM manipulation.
 Testing
 For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
