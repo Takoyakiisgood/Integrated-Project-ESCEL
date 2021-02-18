@@ -353,6 +353,20 @@ p.stats {
     margin-bottom: 3vh;
 }
 
+#eggexpbar {
+    background-color: #ddd;
+    margin-bottom: 1vh;
+}
+
+#eggexplevel {
+    background-color: #4CAF50;
+}
+
+#eggexpcont {
+    display: flex;
+    flex-direction: column;
+}
+
 #logout-Btn {
     background-color: #FFBF6B; 
 }
@@ -378,6 +392,7 @@ p.stats {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     background-color: #4CC59D;
     border-radius: 10px;
 }
@@ -407,6 +422,8 @@ p.stats {
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
+    margin-top: 6vh;
+    margin-bottom: 2vh;
 }
 
 #egg:hover .hover {

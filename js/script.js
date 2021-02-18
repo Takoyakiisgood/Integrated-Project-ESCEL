@@ -106,6 +106,7 @@ function updateInfo() {
   let exp = `${expgained},${expmax}`
 
   let pets = localStorage.getItem("pets");
+  let growing = localStorage.getItem("growing");
 
   let jsondata = {
     "username": username,
@@ -117,7 +118,8 @@ function updateInfo() {
     "exp": exp,
     "pets": pets,
     "eggs": eggs,
-    "eggevolvestate": eggevolvestate
+    "eggevolvestate": eggevolvestate,
+    "growing": growing
   };
 
   let settings = {
@@ -151,6 +153,7 @@ function newInfo() {
   let pets = "";
   let eggs = 0;
   let eggevolvestate = "0,25"
+  let growing = "false"
 
   let jsondata = {
     "username": username,
@@ -162,7 +165,8 @@ function newInfo() {
     "exp": exp,
     "pets": pets,
     "eggs": eggs,
-    "eggevolvestate": eggevolvestate
+    "eggevolvestate": eggevolvestate,
+    "growing": growing
   };
 
   let settings = {
@@ -193,9 +197,14 @@ function dispInfo() {
   let expmax = localStorage.getItem("expmax");
   let eggcount = localStorage.getItem("eggs");
   let pets = localStorage.getItem("pets");
+  let eggexpgained = localStorage.getItem("eggexp");
+  let eggexpmax = localStorage.getItem("eggexpmax");
 
   //for exp bar
-  perc  = (expgained / expmax).toFixed(2)
+  perc  = ((expgained / expmax).toFixed(2)) * 923
+
+  //for egg exp bar
+  eggperc  = ((eggexpgained / eggexpmax).toFixed(2)) * 111
 
   $("#username").html(`${username}`);
   $("#levelinfo").html(`${level}`);
@@ -205,7 +214,10 @@ function dispInfo() {
   $("#regdate").html(`${regdate}`);
   $("#expgained").html(`${expgained}`);
   $("#expmax").html(`${expmax}`);
-  $("#explevel").css("width", `${perc}`);
+  $("#explevel").css("width", `${perc}px`);
+  $("#eggexplevel").css("width", `${eggperc}px`);
+  $("#eggexpgained").html(`${eggexpgained}`);
+  $("#eggexpmax").html(`${eggexpmax}`);
   $("#eggcount").html(`${eggcount}`);
 
   let pet3d = ""
@@ -266,6 +278,7 @@ function getInfo() {
     localStorage.setItem('pfp', `${response[0].profilepicture}`)
     localStorage.setItem('regdate', `${response[0].regdate}`)
     localStorage.setItem('eggs', `${response[0].eggs}`)
+    localStorage.setItem('growing', `${response[0].growing}`)
 
     let eggevolve = response[0].eggevolvestate
     let eggarray = eggevolve.split(',')
@@ -443,6 +456,19 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
             $("#gamepage").hide();
             $("#congratulations").show();
 
+            //for dropping egg 20% chance
+            let eggs = Number(localStorage.getItem("eggs"));
+            let chanceno = Math.floor(Math.random() * 10) + 1;
+            console.log(chanceno)
+            if (chanceno == 1 || 2) {
+              neweggs = eggs + 1;
+              localStorage.setItem('eggs', `${neweggs}`);
+              setTimeout(function() {
+                alert("Oh Look! The monster you just defeated dropped an egg!");
+              }, 1000);
+            }
+
+            //for exp gain
             let expgained = Number(localStorage.getItem("expgained"));
             let expmax = Number(localStorage.getItem("expmax"));
             let level = Number(localStorage.getItem("level"));
@@ -465,6 +491,45 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
               updateInfo();
               //console.log(newexpgained) //debugging
             }
+
+            //for egg exp gain
+            let eggexpgained = Number(localStorage.getItem("eggexp"));
+            let eggexpmax = Number(localStorage.getItem("eggexpmax"));
+            let petevolve = Number(localStorage.getItem("petevolve"));
+            let growing = localStorage.getItem("growing");
+            let pets = localStorage.getItem("pets")
+
+            //if they are alr growing an egg then the egg exp will increase
+            if (growing == "true") {
+              neweggexp = eggexpgained + 5;
+              if (neweggexp == eggexpmax) { //if egg is fully evolved
+              neweggexp = 0;
+              localStorage.setItem('eggexp', `${neweggexp}`);
+              newpetevolve = petevolve + 1;
+              localStorage.setItem('petevolve', `${newpetevolve}`);
+              growing = false; //set growing back to false
+              localStorage.setItem('growing', `${growing}`);
+
+              let petnames = ["cat","bear"]
+              let randnumber = Math.floor(Math.random() * (petnames.length)) + 0;
+              randpet = petnames[randnumber]
+              //console.log(randpet) //debugging check the pet gotten
+              if (pets != "") {
+                newpets = pets + `,${randpet}`
+                localStorage.setItem('pets', `${newpets}`);
+              } else {
+                newpets = `${randpet}`
+                localStorage.setItem('pets', `${newpets}`);
+              }
+              setTimeout(function() {
+                alert(`Crack Crack! Your Egg has been fully Evolved! You got a ${randpet}!`);
+              }, 1000);
+              updateInfo();
+            } else { //if egg is not fully evolved
+              localStorage.setItem('eggexp', `${neweggexp}`);
+              updateInfo();
+            }
+          }
 
             window.addEventListener("click", (e) => {
             document.location.href = "../index.html";
