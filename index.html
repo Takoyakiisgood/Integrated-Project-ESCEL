@@ -11,7 +11,7 @@
 </head>
 <body style="background-color: #CAECF8;" id="play-page">
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #F2E0A4; padding-left: 1%;">
+    <nav id="navigation-bar" class="navbar fixed-top navbar-expand-lg navbar-light">
         <div class="container-fluid">
           <a href="index.html">
             <img src="./images/logo.png" style="max-height: 8vh; width: auto;" alt="The logo of Keyboard Warriors">
@@ -30,14 +30,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="./html/help.html">Help</a>
               </li>
-              <li class="nav-item" id="playNav">
+              <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="index.html">Play</a>
               </li>
               <li class="nav-item" id="loginNav">
                 <a class="nav-link" href="./html/login.html">Login</a>
               </li>
               <div class="justify-content-md-end" id="logout-Btncont">
-                <button class="btn" type="button" id="logout-Btn">Log Out</button>
+                <button class="btn" type="button" id="logout-Btn">LogOut</button>
               </div>
             </ul>
           </div>
@@ -49,15 +49,8 @@
         KEYBOARD WARRIORS
         <img src="./images/cat.png" style="max-height: 8vh; width: auto; padding: 0 1% 0 1%;" alt="The logo of Keyboard Warriors">
         </h1>
-        <div style="display: flex; justify-content: space-evenly;">
-
-        <div id="pvp">
-          <a class="gamemode-header" id="pvpbtn" href="./html/pvp.html">
-            <p class="h2 text-center">PVP</p>
-            <img src="./images/double-sword.png" style="padding-top: 2vh;" alt="An icon of pvp sword">
-            </a>
-        </div>
-        <div id="adv">
+        <div>
+        <div id="adv" class="col-5 container">
           <a class="gamemode-header" id="advbtn" href="./html/adv.html">
             <p class="h2 text-center">ADVENTURE</p>
             <img src="./images/treasure.png" style="transform: rotate(90deg); width: 11vw; height: auto;" alt="An icon of pvp sword">

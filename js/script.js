@@ -23,6 +23,24 @@ if ($(document.body).attr('id') == "leaderboard-docu") {
 });
 }
 
+$("#groweggBtn").on("click", function (e) {
+  let growing = localStorage.getItem("growing");
+  let eggcount = Number(localStorage.getItem("eggs"));
+  if (eggcount > 0) {
+  if (growing == "false") {
+    growing = true;
+    neweggcount = eggcount - 1;
+    localStorage.setItem('growing',`${growing}`);
+    localStorage.setItem('eggs',`${neweggcount}`);
+    alert("Egg has been placed into the incubator!");
+    updateInfo();
+    dispInfo();
+  } else {
+    alert("There is already an egg in the incubator!");
+  }
+}
+});
+
 function disLeaderboard() {
   let settings = {
     "async": true,
@@ -107,6 +125,7 @@ function updateInfo() {
 
   let pets = localStorage.getItem("pets");
   let growing = localStorage.getItem("growing");
+  let fastestwpm = localStorage.getItem("fastestwpm");
 
   let jsondata = {
     "username": username,
@@ -119,7 +138,8 @@ function updateInfo() {
     "pets": pets,
     "eggs": eggs,
     "eggevolvestate": eggevolvestate,
-    "growing": growing
+    "growing": growing,
+    "wpm": fastestwpm
   };
 
   let settings = {
@@ -152,8 +172,9 @@ function newInfo() {
   let exp = "0,15";
   let pets = "";
   let eggs = 0;
-  let eggevolvestate = "0,25"
-  let growing = "false"
+  let eggevolvestate = "0,25";
+  let growing = "false";
+  let fastestwpm = "";
 
   let jsondata = {
     "username": username,
@@ -166,7 +187,8 @@ function newInfo() {
     "pets": pets,
     "eggs": eggs,
     "eggevolvestate": eggevolvestate,
-    "growing": growing
+    "growing": growing,
+    "wpm": fastestwpm
   };
 
   let settings = {
@@ -199,6 +221,8 @@ function dispInfo() {
   let pets = localStorage.getItem("pets");
   let eggexpgained = localStorage.getItem("eggexp");
   let eggexpmax = localStorage.getItem("eggexpmax");
+  let growing = localStorage.getItem("growing");
+  let fastestwpm = localStorage.getItem("fastestwpm");
 
   //for exp bar
   perc  = ((expgained / expmax).toFixed(2)) * 923
@@ -279,6 +303,7 @@ function getInfo() {
     localStorage.setItem('regdate', `${response[0].regdate}`)
     localStorage.setItem('eggs', `${response[0].eggs}`)
     localStorage.setItem('growing', `${response[0].growing}`)
+    localStorage.setItem('fastestwpm', `${response[0].wpm}`)
 
     let eggevolve = response[0].eggevolvestate
     let eggarray = eggevolve.split(',')
@@ -402,11 +427,23 @@ window.addEventListener('keydown', (e) => {
 //end of typing game
 
 //generate sentence
+//senturl = "https://esandcelgenerator-2966.restdb.io/rest/test" //use this for debugging
 function genSentences() {
+  let level = localStorage.getItem('level');
+  
+  if (level < 15) {
+    senturl = "https://esandcelgenerator-2966.restdb.io/rest/sentences-easy";
+  } else if (level < 30) {
+    senturl = "https://esandcelgenerator-2966.restdb.io/rest/sentences-medium";
+  } else {
+    senturl = "https://esandcelgenerator-2966.restdb.io/rest/sentences-hard";
+  }
+
+  
   let settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://esandcelgenerator-2966.restdb.io/rest/test",
+    "url": senturl,
     "method": "GET",
     "headers": {
       "content-type": "application/json",
@@ -427,6 +464,8 @@ function genSentences() {
     //console.log(response);
     let randnumber = Math.floor(Math.random() * ((response.length)-1)) + 0;
     let sentence = response[randnumber].sentences
+    let nowordarray = sentence.split(' ');
+    noword = nowordarray.length;
     
     sentarray = sentence.split('');
     let sentdisplay = sentarray.join('');
@@ -435,8 +474,8 @@ function genSentences() {
   });
 }
 
-//var health = 100;
-var health = 3; //debugging
+var health = 100; //use this for actual
+//var health = 3; //use this for debugging
 var rounds = 1;
 var currentIndex = 0;
 if (inGame == false) { //if the player not on playing page won't have keyup activity
@@ -444,6 +483,7 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
     if (sentarray.length > 0) {
       //console.log("sent size ", sentarray.length);
       //console.log("current index ", currentIndex);
+       startTime = (new Date().getTime())/1000;
        if (e.key.toLowerCase() === sentarray[currentIndex].toLowerCase()) {
         sentarray.shift();//reduces the array one by one when user types
         let sentdisplay = sentarray.join("");
@@ -451,6 +491,14 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
         //console.log(`Key ${e.key} Key Code ${e.code}`); //debugging 
         
           if (sentarray.length == 0) { //when sentence is finished
+          //get wpm
+          endTime = (new Date().getTime())/1000;
+          timetaken = (endTime - startTime);
+          wpm = (noword/timetaken) * 60;
+          setTimeout(function() {
+            alert(`Your WPM was ${wpm}`);
+          }, 1000);
+
           rounds = rounds + 1;
           if (rounds == 4) {
             $("#gamepage").hide();
@@ -458,9 +506,9 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
 
             //for dropping egg 20% chance
             let eggs = Number(localStorage.getItem("eggs"));
-            let chanceno = Math.floor(Math.random() * 10) + 1;
-            console.log(chanceno)
-            if (chanceno == 1 || 2) {
+            let chanceno = Math.random();
+            //console.log(chanceno) //debugging
+            if (chanceno < 0.2) {
               neweggs = eggs + 1;
               localStorage.setItem('eggs', `${neweggs}`);
               setTimeout(function() {
@@ -511,7 +559,7 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
               localStorage.setItem('growing', `${growing}`);
 
               let petnames = ["cat","bear"]
-              let randnumber = Math.floor(Math.random() * (petnames.length)) + 0;
+              let randnumber = Math.floor(Math.random() * petnames.length)
               randpet = petnames[randnumber]
               //console.log(randpet) //debugging check the pet gotten
               if (pets != "") {
@@ -537,6 +585,7 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
           } else {
           $("#round").html(`${rounds}`);
           $("#startscreen").show();
+          $("#gamepage").hide();
           inGame = false;
           }
         }
