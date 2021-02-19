@@ -471,7 +471,22 @@ function genSentences() {
     let sentdisplay = sentarray.join('');
 
     $("#sentgenerated").html(`${sentdisplay}`);
+    startTimer()
+    wpmstartTime = (new Date().getTime()) / 1000;
   });
+}
+
+let startTime
+function startTimer() {
+  $("#timer").html(0);
+  startTime = new Date();
+  setInterval(() => {
+    $("#timer").html(getTimerTime())
+  }, 1000)
+}
+
+function getTimerTime() {
+  return Math.floor((new Date() - startTime) / 1000)
 }
 
 var health = 100; //use this for actual
@@ -479,11 +494,10 @@ var health = 100; //use this for actual
 var rounds = 1;
 var currentIndex = 0;
 if (inGame == false) { //if the player not on playing page won't have keyup activity
-  window.addEventListener("keyup", (e) => {
+    window.addEventListener("keyup", (e) => {
     if (sentarray.length > 0) {
       //console.log("sent size ", sentarray.length);
       //console.log("current index ", currentIndex);
-       startTime = (new Date().getTime())/1000;
        if (e.key.toLowerCase() === sentarray[currentIndex].toLowerCase()) {
         sentarray.shift();//reduces the array one by one when user types
         let sentdisplay = sentarray.join("");
@@ -492,12 +506,13 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
         
           if (sentarray.length == 0) { //when sentence is finished
           //get wpm
-          endTime = (new Date().getTime())/1000;
-          timetaken = (endTime - startTime);
-          wpm = (noword/timetaken) * 60;
+          wpmendTime = (new Date().getTime()) / 1000;
+          timetaken = wpmendTime - wpmstartTime;
+          wpm = (noword / timetaken) * 60;
           setTimeout(function() {
-            alert(`Your WPM was ${wpm}`);
-          }, 1000);
+            alert(`Your WPM is ${wpm}`);
+          }, 500);
+          let fastestwpm = localStorage.get
 
           rounds = rounds + 1;
           if (rounds == 4) {
@@ -592,6 +607,7 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
       
       } else {
         health--;
+        $("#health").html(health);
         //console.log(`Health: ${health}`); //debugging
         //console.log(rounds); //debugging
         if (health < 1) {
