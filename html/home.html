@@ -78,32 +78,49 @@
     
     <div id="home-info" class="container">
       <div class="row p-3">
-        <div class="col-4 col-sm-3 p-3 text-center">
+        <div class="col-3 col-sm-3 p-3 text-center">
           <img id="pfp" src="../images/bear-pfp.png" />
       </div>
       
-        <div class="col-3 p-3">
+        <div class="col-4 p-3">
           <p id="username" class="h1">Guest</p>
           <p>Date joined: <span id="regdate">...</span></p>
         </div>
+        <div id="pfpselect" class="col-4 p-3 col-md-4 offset-md-1">
+          <p class="h6">Change profile picture:</p>
+          <form>
+          <img class="pfpeg" src="../images/bear-pfp.png" />
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="pfp" id="bearpfp" value="../images/bear-pfp.png">
+            <label class="form-check-label" for="bearpfp">Bear pfp</label>
+          </div>
+          <img class="pfpeg" src="../images/cat-pfp.png" />
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="pfp" id="catpfp" value="../images/cat-pfp.png">
+            <label class="form-check-label" for="catpfp">Cat pfp</label>
+          </div>
+          <button class="btn btn-primary" type="button" id="updatepfp">Update</button>
+        </form>
+        </div>
       </div>
         <div class="row justify-content-around">
-          <div class="col-4">
-            
-          </div>
         </div>
         <div class="row p-3 text-center">
-          <div class="col-4">
+          <div class="col-3">
             <p class="h5">LEVEL</p>
             <p id="levelinfo">...</p>
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <p class="h5">MONSTERS DEFEATED</p>
             <p id="monstdefinfo">...</p>
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <p class="h5">PETS EVOLVED</p>
             <p id="petevolveinfo">...</p>
+          </div>
+          <div class="col-3">
+            <p class="h5">FASTEST WPM</p>
+            <p id="fastestwpm">...</p>
           </div>
         </div>
         <div class="row p-3" id="expcont">

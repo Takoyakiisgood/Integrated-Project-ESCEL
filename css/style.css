@@ -108,11 +108,11 @@ body {
     flex-direction: column;
 }
 
-h2 {
-    text-align: center !important;
-    margin-bottom: 2% !important;
+.login-headers {
+    text-align: center;
+    margin-bottom: 2%;
+    font-weight: bold !important;
 }
-
 
 #login {
     background-color: #96DCC5;
@@ -121,6 +121,18 @@ h2 {
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+#login-btn {
+    background-color: #D4FFC7;
+    color: #17301C;
+    font-weight: bold;
+}
+
+#register-btn {
+    background-color: #D4FFC7;
+    color: #17301C;
+    font-weight: bold;
 }
 
 #register {
@@ -135,47 +147,31 @@ h2 {
 
 
 /*help page */
-h2.h2 {
-    display: flex;
+.help-headers {
     color: #605296;
-    margin-left: 15px;
-    font-weight: bold;
-    margin-bottom: 5px !important;
+    font-weight: bold !important;
+    text-align: start;
+    margin: 0;
 }
 
+#help-cont {
+    background-color: #FFF1DA;
+    padding: 4%;
+    border-radius: 40px;
+}
+
+#inst-info {
+    padding: 2vh 0 2vh 0;
+}
+
+.help-text {
+    padding: 2vh 0 2vh 0;
+}
 
 li {
-    margin-left: 30px;
+    margin: 0 0 1vh 2vw;
     font: arial;
     color: #2D3D6A;
-}
-
-div.help-purpose {
-    display: flex;
-    margin-left: 40px;
-    font: arial;
-    padding: 6px;
-
-}
-
-  
-.monsters-defeated {
-    flex-grow: 1;
-    height: 100px;
-}
-
-.pets-evolved {
-    flex-grow: 1;
-    height: 100px;
-}
-  
-.monsters-defeated + .pets-evolved {
-    margin-left: 2%;
-}
-
-.monsters-defeated {
-    flex-grow: 1;
-    height: 100px;
 }
 
 .help-logo {
@@ -184,12 +180,10 @@ div.help-purpose {
     padding: 0 1% 0 1%;
 }
 
-.mascot-headers-monsters {
-    display: flex;
+.challenge-headers {
     color: #605296;
-    margin-left: 15px;
     font-weight: bold;
-    margin-bottom: 5px !important;
+    margin-bottom: 5px;
 }
 /*help page end */
 
@@ -440,4 +434,15 @@ p.stats {
     align-items: center;
     font-weight: bold;
     padding: 5% 5% 5% 8%;
+}
+
+.pfpeg {
+    width: 3vw;
+    height: auto;
+    margin: 1vh 1vw 0 0;
+}
+
+#updatepfp {
+    margin-top: 2vh;
+    background-color: #8A83C5;
 }
