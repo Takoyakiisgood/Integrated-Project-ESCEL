@@ -444,7 +444,7 @@ window.addEventListener('keydown', (e) => {
 //end of typing game
 
 //generate sentence
-//senturl = "https://esandcelgenerator-2966.restdb.io/rest/test" //use this for debugging
+//senturl = "https://esandcelgenerator-2966.restdb.io/rest/test" //use this for debugging: 1 word long
 function genSentences() {
   let level = localStorage.getItem('level');
   
