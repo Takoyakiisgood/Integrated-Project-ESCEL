@@ -13,7 +13,7 @@ $("#logout-Btncont").hide()
 $("#inventory-page").hide()
 $("#pfpselect").hide()
 
-//start of leaderboard functions
+//start of leaderboard functions to display leaderboard
 if ($(document.body).attr('id') == "leaderboard-docu") {
   disLeaderboard();
   var t = $('#table_id').DataTable({
@@ -24,10 +24,11 @@ if ($(document.body).attr('id') == "leaderboard-docu") {
 });
 }
 
+//start growing egg function
 $("#groweggBtn").on("click", function (e) {
   let growing = localStorage.getItem("growing");
   let eggcount = Number(localStorage.getItem("eggs"));
-  if (eggcount > 0) {
+  if (eggcount > 0) { //if theres more than 0 eggs and not growing then eggs can be grown
   if (growing == "false") {
     growing = true;
     neweggcount = eggcount - 1;
@@ -42,6 +43,7 @@ $("#groweggBtn").on("click", function (e) {
 }
 });
 
+//start update pfp function, players can select their desired default pfp
 $("#updatepfp").on("click", function (e) {
   let pfp = ""
   if (document.getElementById('bearpfp').checked) {
@@ -54,6 +56,7 @@ $("#updatepfp").on("click", function (e) {
   location.href = "../html/home.html"
 });
 
+//append the datas into DataTables for sorting.
 function disLeaderboard() {
   let settings = {
     "async": true,
@@ -116,7 +119,7 @@ $("#logout-Btn").on("click", function (e) {
   document.location.href = "../index.html";
 }); //end of log out function
 
-//start of update user info
+//start of update user info to database
 function updateInfo() {
   let username = localStorage.getItem("username");
   let dataid = localStorage.getItem("_id");
@@ -244,6 +247,7 @@ function dispInfo() {
   //for egg exp bar
   eggperc  = ((eggexpgained / eggexpmax).toFixed(2)) * 111
 
+  //display info on home page
   $("#pfpselect").show()
 
   $("#username").html(`${username}`);
@@ -261,6 +265,7 @@ function dispInfo() {
   $("#eggcount").html(`${eggcount}`);
   $("#fastestwpm").html(`${fastestwpm}`);
 
+  //based on pets in inventory display sketchfab model of the pets
   let pet3d = ""
   if (pets != "") {
     petsarray = pets.split(',');
@@ -431,6 +436,7 @@ $.ajax(settings).done(function (response) {
 
 //start of typing game
 
+//ensure that enter key only listen when startscreen is shown
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       if (inGame == false) {
@@ -477,6 +483,7 @@ function genSentences() {
   }
   }
   
+  //generate random sentence from database
   $.ajax(settings).done(function (response) {
     //console.log(response);
     let randnumber = Math.floor(Math.random() * ((response.length)-1)) + 0;
@@ -493,6 +500,7 @@ function genSentences() {
   });
 }
 
+//start timer function
 let startTime
 function startTimer() {
   $("#timer").html(0);
@@ -503,8 +511,9 @@ function startTimer() {
 }
 
 function getTimerTime() {
-  return Math.floor((new Date() - startTime) / 1000)
+  return Math.floor((new Date() - startTime) / 1000) //returns every second
 }
+//end timer function
 
 var health = 100; //use this for actual
 //var health = 3; //use this for debugging
@@ -534,7 +543,7 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
             setTimeout(function() {
               alert(`High Score: You broke your high score of ${fastestwpm} with ${wpm}!`);
             }, 300);
-            localStorage.setItem('fastestwpm',`${wpm}`);
+            localStorage.setItem('fastestwpm',`${wpm}`); //update new high score
             updateInfo();
           }
 
@@ -617,7 +626,7 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
               updateInfo();
             }
           }
-
+          //when victory/defeat screen shows click to go back to main page
             window.addEventListener("click", (e) => {
             document.location.href = "../index.html";
             });
