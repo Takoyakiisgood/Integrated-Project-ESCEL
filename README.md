@@ -84,30 +84,31 @@ For any scenarios that have not been automated, test the user stories manually a
 # Testing using Lambdatest.com:
 Working fine on: Chrome, Firefox, Safari, Edge. <br>
 
-1.Login form: <br>
+1.Login form:
 <li>Go to "Login" Page</li>
 <li>Try logging in with invalid username and password and verify that error message of invalid username/password appears</li>
 <li>Try logging in with valid username and password and verify that success message appears and user would be redirected to home page in 3 secs.</li> <br>
 Some Issues not addressed: <br>
 <li>Form does not have validation for submitting empty form</li><br>
 
-2.Register form: <br>
+2.Register form:
 <li>Register with new username and password and ensure register success message appears.</li>
 Some Issues not addressed: <br>
 <li>Form does not have validation for submitting empty form</li>
-<li>After registering, players have to immediately login for the app to work normally. If they finish registering and immediately press the other tabs they would encounter an error where in the adventure mode startscreen they can not load the game page after ressing enter multiple times.</li>
+<li>After registering, players have to immediately login for the app to work normally. If they finish registering and immediately press the other tabs they would encounter an error where in the adventure mode startscreen they can not load the game page after ressing enter multiple times.</li><br>
 
-3.Navigation bar: <br>
+3.Navigation bar:
 <li>Go from page to page via navigation bar</li>
-<li> Ensure user is redirected to the correct webpage through the navigation bar.
+<li> Ensure user is redirected to the correct webpage through the navigation bar.</li>
  Some issues not adressed: <br>
- An if function was created that when players are logged in, the login tab on the navigation bar would be disabled for all pages until the user logs out. However the the login tab on the navigation bar from home page although shown as disabled can still be clicked to go to the login page.
+ <li>An if function was created that when players are logged in, the login tab on the navigation bar would be disabled for all pages until the user logs out. However the the login tab on the navigation bar from home page although shown as disabled can still be clicked to go to the login page.</li><br>
 
- 4.Play: <br>
-<li>Go to play page</li>
-<li>Select adventure mode</li>
- Some issues not adressed: <br>
- An if function was created that when players are logged in, the login tab on the navigation bar would be disabled for all pages until the user logs out. However the the login tab on the navigation bar from home page although shown as disabled can still be clicked to go to the login page.
+ 4.Play:
+<li>Go to play page.</li>
+<li>Select adventure mode.</li>
+<li>Press enter when startscreen is shown ensure that lottie animation is running smoothly.</li>
+<li>Type in the generated sentences and if clear show victory page if lose show defeat page.</li>
+<li>If level up then ensure data is saved and uploaded to database.</li>
 
 ## Contact Us:
 Developers: Esther Ho (s10203310@connect.np.edu.sg) & Celest Goh (s10204547@connect.np.edu.sg)
