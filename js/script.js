@@ -11,6 +11,7 @@ $("#losing").hide()
 $("#congratulations").hide()
 $("#logout-Btncont").hide()
 $("#inventory-page").hide()
+$("#pfpselect").hide()
 
 //start of leaderboard functions
 if ($(document.body).attr('id') == "leaderboard-docu") {
@@ -39,6 +40,18 @@ $("#groweggBtn").on("click", function (e) {
     alert("There is already an egg in the incubator!");
   }
 }
+});
+
+$("#updatepfp").on("click", function (e) {
+  let pfp = ""
+  if (document.getElementById('bearpfp').checked) {
+    pfp = document.getElementById('bearpfp').value;
+  } else if (document.getElementById('catpfp').checked) {
+    pfp = document.getElementById('catpfp').value;
+  }
+  localStorage.setItem('pfp',`${pfp}`);
+  updateInfo();
+  location.href = "../html/home.html"
 });
 
 function disLeaderboard() {
@@ -72,6 +85,7 @@ function disLeaderboard() {
      content.push(response[i].level);
      content.push(response[i].defeatedmonsters);
      content.push(response[i].fullyevolvedpets);
+     content.push(response[i].wpm);
      t.row.add(content).draw( false );
     }
     
@@ -230,6 +244,8 @@ function dispInfo() {
   //for egg exp bar
   eggperc  = ((eggexpgained / eggexpmax).toFixed(2)) * 111
 
+  $("#pfpselect").show()
+
   $("#username").html(`${username}`);
   $("#levelinfo").html(`${level}`);
   $("#monstdefinfo").html(`${monstdef}`);
@@ -243,6 +259,7 @@ function dispInfo() {
   $("#eggexpgained").html(`${eggexpgained}`);
   $("#eggexpmax").html(`${eggexpmax}`);
   $("#eggcount").html(`${eggcount}`);
+  $("#fastestwpm").html(`${fastestwpm}`);
 
   let pet3d = ""
   if (pets != "") {
@@ -304,6 +321,7 @@ function getInfo() {
     localStorage.setItem('eggs', `${response[0].eggs}`)
     localStorage.setItem('growing', `${response[0].growing}`)
     localStorage.setItem('fastestwpm', `${response[0].wpm}`)
+    localStorage.setItem('pets', `${response[0].pets}`)
 
     let eggevolve = response[0].eggevolvestate
     let eggarray = eggevolve.split(',')
@@ -318,7 +336,6 @@ function getInfo() {
     let expmax = exparray[1]
     localStorage.setItem('expgained', `${expgained}`)
     localStorage.setItem('expmax', `${expmax}`)
-    localStorage.setItem('pets', `${response[0].pets}`)
 
     dispInfo()
     });
@@ -431,9 +448,9 @@ window.addEventListener('keydown', (e) => {
 function genSentences() {
   let level = localStorage.getItem('level');
   
-  if (level < 15) {
+  if (level < 16) {
     senturl = "https://esandcelgenerator-2966.restdb.io/rest/sentences-easy";
-  } else if (level < 30) {
+  } else if (level < 31) {
     senturl = "https://esandcelgenerator-2966.restdb.io/rest/sentences-medium";
   } else {
     senturl = "https://esandcelgenerator-2966.restdb.io/rest/sentences-hard";
@@ -508,11 +525,18 @@ if (inGame == false) { //if the player not on playing page won't have keyup acti
           //get wpm
           wpmendTime = (new Date().getTime()) / 1000;
           timetaken = wpmendTime - wpmstartTime;
-          wpm = (noword / timetaken) * 60;
+          wpm = Math.round((noword / timetaken) * 60);
           setTimeout(function() {
             alert(`Your WPM is ${wpm}`);
-          }, 500);
-          let fastestwpm = localStorage.get
+          }, 300);
+          let fastestwpm = localStorage.getItem("fastestwpm");
+          if (wpm > fastestwpm) {
+            setTimeout(function() {
+              alert(`High Score: You broke your high score of ${fastestwpm} with ${wpm}!`);
+            }, 300);
+            localStorage.setItem('fastestwpm',`${wpm}`);
+            updateInfo();
+          }
 
           rounds = rounds + 1;
           if (rounds == 4) {
