@@ -5,7 +5,8 @@ Team Leader & Scrum Master: Esther Ho Enqi (S10203310)<br>
 Team  & Scrum Manager: Celest Goh Zi Xuan (S10204547)
  
 Website: https://takoyakiisgood.github.io/Integrated-Project-ESCEL/<br>
-Github: https://github.com/Takoyakiisgood/Integrated-Project-ESCEL
+Github: https://github.com/Takoyakiisgood/Integrated-Project-ESCEL <br>
+Adobe XD: https://xd.adobe.com/view/8e9419d2-a367-454f-816c-6c9f5d5b9ca5-dbc7/
  
 ## **Design Process**
 Our project is catered for mainly people who are starting to use a computer, especially children around the ages of 6 to 12. This website application feature is to help them to practise typing so that in the future, they would be skilled at typing smoothly with little to no errors.
